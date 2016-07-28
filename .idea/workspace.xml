@@ -2,105 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc4197f4-a482-4b27-b825-6c619e175652" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/JobInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/JobInfoExtractUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/JobInfoIndex.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/ClawStarter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/apache-mime4j-0.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/bsh-2.0b4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/cglib-nodep-2.1_3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/commons-codec-1.10.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/commons-exec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/commons-io-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/gson-2.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/guava-19.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/hamcrest-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/hamcrest-library-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/httpclient-4.5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/httpcore-4.4.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/httpmime-4.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/jcommander-1.48.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/jna-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/jna-platform-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/junit-4.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/CHANGELOG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/NOTICE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/apache-mime4j-0.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/bsh-2.0b4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/cglib-nodep-2.1_3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/commons-codec-1.10.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/commons-exec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/commons-io-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/gson-2.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/guava-19.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/hamcrest-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/hamcrest-library-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/httpclient-4.5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/httpcore-4.4.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/httpmime-4.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/jcommander-1.48.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/jna-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/jna-platform-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/junit-4.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/netty-3.5.7.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/phantomjsdriver-1.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/libs/testng-6.9.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/selenium-java-2.53.1-srcs.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-2.53.1/selenium-java-2.53.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-java-2.53.1-srcs.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-java-2.53.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/libs/selenium-java-2.53.1.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/netty-3.5.7.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/phantomjsdriver-1.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/CHANGELOG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/NOTICE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/apache-mime4j-0.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/bsh-2.0b4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/cglib-nodep-2.1_3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/commons-codec-1.10.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/commons-exec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/commons-io-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/gson-2.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/guava-19.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/hamcrest-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/hamcrest-library-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/httpclient-4.5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/httpcore-4.4.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/httpmime-4.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/jcommander-1.48.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/jna-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/jna-platform-4.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/junit-4.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/netty-3.5.7.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/phantomjsdriver-1.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/libs/testng-6.9.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/selenium-java-2.53.1-srcs.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-2.53.1/selenium-java-2.53.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/selenium-java-2.53.1.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/bbsClaw/testng-6.9.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ClawerStarter$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ClawerStarter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/MyCrawer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/NJUCrawer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/NYUCrawer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/SJUCrawer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/UniversityConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ZJUCrawer.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/school.properties" afterPath="$PROJECT_DIR$/src/main/resources/school.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/school.properties" afterPath="$PROJECT_DIR$/target/classes/school.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ClawerStarter.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerStarter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/MyCrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/NJUCrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCrawler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/NYUCrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NYUCrawler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/SJUCrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/SJUCrawler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/UniversityConstants.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/UniversityConstants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ZJUCrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/ZJUCrawler.java" />
     </list>
     <ignored path="bbsClaw.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -159,8 +61,8 @@
       <file leaf-file-name="CrawlerStarter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerStarter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+            <state relative-caret-position="326">
+              <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#458#477#0" expanded="true" />
@@ -442,24 +344,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbsClaw" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbsClaw" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1035,12 +919,12 @@
       <workItem from="1469410047016" duration="245000" />
       <workItem from="1469413067899" duration="8682000" />
       <workItem from="1469582386244" duration="835000" />
-      <workItem from="1469666577715" duration="6423000" />
+      <workItem from="1469666577715" duration="7025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39034000" />
+    <option name="totallyTimeSpent" value="39636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1654,8 +1538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        <state relative-caret-position="326">
+          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#458#477#0" expanded="true" />
