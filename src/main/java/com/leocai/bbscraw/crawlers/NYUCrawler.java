@@ -42,9 +42,14 @@ public class NYUCrawler extends MyCrawler {
 //    }
 
     @Override protected JobInfo getInfoDTO(WebElement we) {
-        SimpleDateFormat sdf = new SimpleDateFormat();
-        JobInfoIndex jobDTO = new JobInfoIndex();
-        return JobInfoExtractUtils.simpleExtract(we, jobDTO, sdf);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+        JobInfoIndex jobInfoIndex = new JobInfoIndex();
+        jobInfoIndex.setHrefIdnex(1);
+        jobInfoIndex.setTimeIndex(2);
+        jobInfoIndex.setTitleIndex(1);
+        jobInfoIndex.setHotIndex(4);
+        return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, sdf, sdf2);
     }
 
     protected List<WebElement> getCuCaoTarget() {

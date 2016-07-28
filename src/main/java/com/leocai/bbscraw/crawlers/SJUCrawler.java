@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Created by caiqingliang on 2016/7/24.
@@ -19,7 +20,10 @@ public class SJUCrawler extends MyCrawler {
 
     @Override protected JobInfo getInfoDTO(WebElement we) {
         JobInfoIndex jobInfoIndex=new JobInfoIndex();
-        SimpleDateFormat sdf=new SimpleDateFormat();
+        jobInfoIndex.setHrefIdnex(1);
+        jobInfoIndex.setTimeIndex(3);
+        jobInfoIndex.setTitleIndex(4);
+        SimpleDateFormat sdf=new SimpleDateFormat("MMM dd HH:mm", Locale.ENGLISH);
         return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, sdf);
     }
 

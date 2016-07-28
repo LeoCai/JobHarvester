@@ -13,6 +13,11 @@ import java.util.Date;
 public class JobInfoExtractUtils {
 
     public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, SimpleDateFormat sdf) {
+        return simpleExtract(we, jobInfoIndex, sdf, null);
+    }
+
+    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, SimpleDateFormat sdf,
+                                        SimpleDateFormat sdf2) {
         JobInfo jobInfo = new JobInfo();
         String href = we.findElements(By.tagName("a")).get(jobInfoIndex.getHrefIdnex()).getAttribute("href");
         String timeStr = we.findElements(By.tagName("td")).get(jobInfoIndex.getTimeIndex()).getText();
@@ -21,6 +26,11 @@ public class JobInfoExtractUtils {
         try {
             time = sdf.parse(timeStr);
         } catch (ParseException e) {
+            try {
+                if (sdf2 != null) time = sdf2.parse(timeStr);
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         }
         int hot = 0;
@@ -34,5 +44,4 @@ public class JobInfoExtractUtils {
         jobInfo.setHot(hot);
         return jobInfo;
     }
-
 }

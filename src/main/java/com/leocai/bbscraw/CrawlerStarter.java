@@ -101,9 +101,9 @@ public class CrawlerStarter {
             FileWriter fileWriter = new FileWriter("./jobInfo.html");
             fileWriter.write("<html >\n" + "<head>\n"
                              + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                             + "</head>\n" + "<body>\n" + "    <div>\n" + "        <ul>\n");
+                             + "</head>\n" + "<body>\n" + "    <div>\n" + "        <table>\n");
             fileWriter.write(s);
-            fileWriter.write("</ul>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
+            fileWriter.write("</table>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
