@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface JobInfoMapper {
 
-    @Insert("insert into jobinfo(title, hot, jobdate) values (#{title}, #{hot}, #{jobDate})")
+    @Insert("insert into jobinfo(title, hot, jobdate, company) values (#{title}, #{hot}, #{jobDate}, #{company})")
     public int insertJobInfo(JobInfo jobInfo);
 
     @Select("select * from jobinfo")

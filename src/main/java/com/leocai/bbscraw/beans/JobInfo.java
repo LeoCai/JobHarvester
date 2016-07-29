@@ -10,12 +10,15 @@ import java.util.Date;
 public class JobInfo implements Serializable {
 
     private static final long serialVersionUID = 5823691433703420311L;
-    private int id;
-    private Date   jobDate;
-    private String title;
-    private String type;
-    private String href;
-    private int    hot;
+
+    private int     id;
+    private Date    jobDate;
+    private String  title;
+    private String  company;
+    private String  href;
+    private int     hot;
+    private String  source;
+    private boolean isRead;
 
     public int getId() {
         return id;
@@ -41,12 +44,12 @@ public class JobInfo implements Serializable {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
+    public String getCompany() {
+        return company;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public void setHref(String href) {
@@ -70,9 +73,25 @@ public class JobInfo implements Serializable {
                "id=" + id +
                ", jobDate=" + jobDate +
                ", title='" + title + '\'' +
-               ", type='" + type + '\'' +
+               ", company='" + company + '\'' +
                ", href='" + href + '\'' +
                ", hot=" + hot +
                '}';
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }

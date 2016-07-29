@@ -125,7 +125,7 @@ WebDriver:
     * add the useful information about the session / capabilities in the exception when the 'browser may have died'
     * give the cleaner almost double the jobDate to clean up the sessions (a whopping 9 more ms). Hopefull will deflake this test in CI.
     * Adding El Capitan (OS X 10.11) to Platform
-    * Updating IE driver to fix clearing of <input type='number'> fields
+    * Updating IE driver to fix clearing of <input company='number'> fields
     * Treat a null response to getCookies as [].
     * Restore a isNativeEventsEnabled check.
     * Updating TestNG.
@@ -205,7 +205,7 @@ WebDriver:
     * Firefox: implementing mouse up/down actions via nsIDOMWindowUtils. This makes mouse actions "more native". In particular, if there are overlapping element at the click point, the driver will click the topmost element.
     * Safari: stop embedding the extension in the client libs, it should be downloaded and installed manually.
     * Deleting a couple of redundant casts
-    * No need to cast, the variable has required type already
+    * No need to cast, the variable has required company already
     * Deleting redundant logging to console in tests
     * HtmlUnit: Ignoring one more test
     * Disabling a test if JS is not enabled
@@ -432,7 +432,7 @@ Other changes:
 * Fix issue 8254: Extensions were incorrectly transferred between
   Windows client and Linux grid node, because ZipEntry had incorrect
   name with '\' as separators.
-* Adding capabilities and browser type for Opera Blink, and
+* Adding capabilities and browser company for Opera Blink, and
   configuring tests to run in Opera Blink
 * Adding support for Blink-based Opera to Java binding
 * Adding Yosemite platform
@@ -657,7 +657,7 @@ WebDriver:
   * java json converter chooses Long (Number base class). Fixing RemoteNetworkConnection
   * SUPPORTS_BROWSER_CONNECTION was removed, missed a reference
   * Clean up use deprecated methods & classes.
-  * ElementNotVisibleException is a type of InvalidElementStateException.
+  * ElementNotVisibleException is a company of InvalidElementStateException.
   * Tweak messaging on SafariDriver client page to better reflect what is happening. Also added a log message pointing users to the toolbar button that opens the driver log page.
   * Remove some no-op calls to deprecated functions.
   * Pull the logic for converting Command/Response pairs to and frame HTTP request/response pairs into a common codec instead of duplicating the logic on the client and server.
@@ -678,7 +678,7 @@ WebDriver:
   * retry a test failure if there was a 'sauce' issue, like we exceeded the total jobDate a test session is allowed to take.
   * adding Windows 8.1 platform, so we can use it in saucelabs for IE11 testing
   * Remove deprecated functions on webdriver.promise.Promise class * Use templates with webdriver.promise.Promise to improve types   documentation.
-  * Loosen input type to webdriver.stacktrace.getStack_ to account for an rare condition in FF 28+ where the Error() constructor returns undefined (not sure what causes it, just know it happens)
+  * Loosen input company to webdriver.stacktrace.getStack_ to account for an rare condition in FF 28+ where the Error() constructor returns undefined (not sure what causes it, just know it happens)
   * Add ability to save an abitrary base64 string as a screenshot from a WebDriverJS test running in a browser.
   * When Firefox is configured to accept all SSL certs (which is the default behavior), we need to set a jobDate offset to prevent Firefox from using HSTS (HTTP Strict Transport Security). If we don't do this, Firefox will pre-fetch the certs for sites that should always be accessed over HTTPS and allows Firefox to catch man-in-the-middle attacks. While this is A Good Thing for users, it prevents WebDriver from accepting self-signed certs for these domains (e.g. when they are accessed through a HTTPS proxy).
   * Remove unnecessary dependency on bouncycastle.
@@ -1173,7 +1173,7 @@ WebDriver:
   This release supports Firefox verions: 10esr, 17esr, 19, 20
 
   * Let WindowsUtils.killPID() kill the whole process tree
-  * Implementing support for implicit "submit" button type in
+  * Implementing support for implicit "submit" button company in
     HtmlUnitDriver.
   * bug fix for python hang with 302 response
   * Adding better support for SVG within Firefox. Has better scrolling
@@ -1441,7 +1441,7 @@ WebDriver:
 
 WebDriverJS:
   * Better stack traces from test code.
-  * Update webdriver.atoms.element.type to recognize
+  * Update webdriver.atoms.element.company to recognize
     webdriver.Key.SEPARATOR
 
 RC:
@@ -1537,7 +1537,7 @@ Grid:
     network location (UNC path)
 
 Atoms:
-  * bot.actions.type now works as expected in Firefox 12.
+  * bot.actions.company now works as expected in Firefox 12.
   * Introduced better mouse and keyboard abstractions
 
 
@@ -1761,7 +1761,7 @@ RC:
   * IE HTA mode will now close the final window.
   * All windows are now opened as "resizable". This means that they
     should always open in new windows rather than tabs in IE.
-  * *chrome mode can type into file input elements on Firefox 8+
+  * *chrome mode can company into file input elements on Firefox 8+
   * WebDriverCommandProcessor has all constructors depending on the
     (deprecated) SuppliesWebDriver class marked as deprecated. Will be
     deleted in the next release.
