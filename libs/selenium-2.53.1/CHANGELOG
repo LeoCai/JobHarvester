@@ -25,7 +25,7 @@ Grid:
     * cleanup cycle needs to be persisted to allMap, since that's where it's read from in other places. this stuff needs some cleanup...
     * adding grid e2e distribution test
     * fix mixed content issue
-    * when sorting nodes for consideration, also take into account last time accessed for a more even distribution across nodes over the lifetime of the grid.
+    * when sorting nodes for consideration, also take into account last jobDate accessed for a more even distribution across nodes over the lifetime of the grid.
     * Also fix using the RemoteProxy's getResourceUsageInPercent instead of calculating it in the sort.  Fixes #1673
     * make HttpClientFactory private methods protected to allow one to extend / override.
 
@@ -84,7 +84,7 @@ WebDriver:
     * Check element corners and middle for clickability
     * Fix keyCodes for some characters in the FirefoxDriver.
     * Firefox: fixing malformed URL handling. Fixed issue #1248
-    * Prevent Firefox from opening a page on a second or later run and/or after some amount of time
+    * Prevent Firefox from opening a page on a second or later run and/or after some amount of jobDate
     * Fixing executable finder on Windows
     * Fixing HtmlUnit driver to pass recently added tests
     * Firefox: fixing appending to contenteditable elements. Fixes issue 1419
@@ -121,9 +121,9 @@ WebDriver:
     * Adding appropriate wait to AuthenticatedPageLoadingTest
     * Refactor concrete WebDriverException#getSupportUrl's
     * Fix a NullPointerException in RemoteWebDriver.getCurrentUrl
-    * Reduces time wasted in when using a native driver
+    * Reduces jobDate wasted in when using a native driver
     * add the useful information about the session / capabilities in the exception when the 'browser may have died'
-    * give the cleaner almost double the time to clean up the sessions (a whopping 9 more ms). Hopefull will deflake this test in CI.
+    * give the cleaner almost double the jobDate to clean up the sessions (a whopping 9 more ms). Hopefull will deflake this test in CI.
     * Adding El Capitan (OS X 10.11) to Platform
     * Updating IE driver to fix clearing of <input type='number'> fields
     * Treat a null response to getCookies as [].
@@ -675,12 +675,12 @@ WebDriver:
   * Eclipse compiler update for Java 8 support
   * Updating naive user agent string checks to account for IE11
   * Adding Windows 8.1 detection to Platform.extractFromSysProperty
-  * retry a test failure if there was a 'sauce' issue, like we exceeded the total time a test session is allowed to take.
+  * retry a test failure if there was a 'sauce' issue, like we exceeded the total jobDate a test session is allowed to take.
   * adding Windows 8.1 platform, so we can use it in saucelabs for IE11 testing
   * Remove deprecated functions on webdriver.promise.Promise class * Use templates with webdriver.promise.Promise to improve types   documentation.
   * Loosen input type to webdriver.stacktrace.getStack_ to account for an rare condition in FF 28+ where the Error() constructor returns undefined (not sure what causes it, just know it happens)
   * Add ability to save an abitrary base64 string as a screenshot from a WebDriverJS test running in a browser.
-  * When Firefox is configured to accept all SSL certs (which is the default behavior), we need to set a time offset to prevent Firefox from using HSTS (HTTP Strict Transport Security). If we don't do this, Firefox will pre-fetch the certs for sites that should always be accessed over HTTPS and allows Firefox to catch man-in-the-middle attacks. While this is A Good Thing for users, it prevents WebDriver from accepting self-signed certs for these domains (e.g. when they are accessed through a HTTPS proxy).
+  * When Firefox is configured to accept all SSL certs (which is the default behavior), we need to set a jobDate offset to prevent Firefox from using HSTS (HTTP Strict Transport Security). If we don't do this, Firefox will pre-fetch the certs for sites that should always be accessed over HTTPS and allows Firefox to catch man-in-the-middle attacks. While this is A Good Thing for users, it prevents WebDriver from accepting self-signed certs for these domains (e.g. when they are accessed through a HTTPS proxy).
   * Remove unnecessary dependency on bouncycastle.
   * Making ChromeDriver directly implement the interfaces representing features it implements.
   * Updating build process for Firefox native events components to use gecko 29 SDK
@@ -1155,7 +1155,7 @@ WebDriver JS:
 
 Grid:
 
-  * Making "beta" console the default one, it's time to get out of
+  * Making "beta" console the default one, it's jobDate to get out of
     beta status
   * Old console is now available at /grid/old/console/
   * Addressed memory leaks caused by per-session logging.
@@ -1365,7 +1365,7 @@ v2.26.0
 WebDriver:
   * Updated OperaDriver to 0.15.
   * Added transparency support to the Color class.
-  * Increased lock time a bit for the FirefoxDriver to make tests more
+  * Increased lock jobDate a bit for the FirefoxDriver to make tests more
     stable on Windows.
   * Added the enablePersistenHover capability to allow the user to specify
     whether to use the persistent hover thread in the IE driver. Defaults
@@ -1859,7 +1859,7 @@ WebDriver:
     higher chance of firing correctly on OS X.
   * Deprecated methods were removed from the FirefoxDriver and FirefoxProfile
     classes (saveScreenshot, enableNativeEvents, alwaysLoadNoFocusLib).
-  * The amount of time a test can remain hanging is now capped (to 3 hours).
+  * The amount of jobDate a test can remain hanging is now capped (to 3 hours).
 
 Grid:
   * Gracefully handle registration of old nodes in a new grid hub (#2738).

@@ -1,7 +1,14 @@
 package com.leocai.bbscraw;
 
 import com.leocai.bbscraw.crawlers.MyCrawler;
+import com.leocai.bbscraw.services.JobInfoService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -14,16 +21,21 @@ import java.util.concurrent.*;
  * StringBuffer
  */
 
+@Component
 public class CrawlerStarter {
 
-    private static final String PATH = "com/leocai/bbscraw/crawlers/";
+    Logger logger = Logger.getLogger(getClass());
 
-    HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
+    private HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
+
+    @Autowired
+    private JobInfoService jobInfoService;
 
     /**
      * 读取学校链接匹配地址，命名规范[School]+[Crawer]
      */
-    public CrawlerStarter() {
+    @PostConstruct
+    public void init(){
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
@@ -37,25 +49,21 @@ public class CrawlerStarter {
             try {
                 Class<MyCrawler> crawer = (Class<MyCrawler>) classLoader.loadClass("com.leocai.bbscraw.crawlers."+key+"Crawler");
                 MyCrawler c = crawer.getConstructor(String.class).newInstance(properties.getProperty((String) key));
+                c.setJobInfoService(jobInfoService);
                 map.put((String) key, c);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             } catch (InstantiationException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             }
             properties.get(key);
         }
-
-        //        map.put("NJU", new com.leocai.bbscraw.crawlers.NJUCrawler());
-        //        map.put("ZJU", new com.leocai.bbscraw.crawlers.ZJUCrawler());
-        //        map.put("SJU", new com.leocai.bbscraw.crawlers.SJUCrawler());
-        //        map.put("NYU", new com.leocai.bbscraw.crawlers.NYUCrawler());
     }
 
     public void start() {
@@ -112,12 +120,22 @@ public class CrawlerStarter {
     }
 
     public static void main(String args[]) {
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        CrawlerStarter crawlerStarter = applicationContext.getBean("crawlerStarter",CrawlerStarter.class);
         long start = System.nanoTime();
         //        new com.leocai.bbscraw.CrawlerStarter().start();
-        new CrawlerStarter().asynStart();
+        crawlerStarter.asynStart();
 
         System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
 
     }
 
+    public JobInfoService getJobInfoService() {
+        return jobInfoService;
+    }
+
+    public void setJobInfoService(JobInfoService jobInfoService) {
+        this.jobInfoService = jobInfoService;
+    }
 }

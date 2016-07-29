@@ -1,19 +1,24 @@
 package com.leocai.bbscraw.crawlers;
 
-import com.leocai.bbscraw.JobInfo;
+import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.utils.JobInfoExtractUtils;
+import com.leocai.bbscraw.beans.JobInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
  * Created by caiqingliang on 2016/7/24.
  */
 public abstract class MyCrawler {
+
+    private JobInfoService jobInfoService;
 
     private String url;
     private String attention[] = new String[] { "内推", "阿里", "百度", "腾讯", "大疆", "华泰", "微软", "网易", "今日头条", "去哪儿", "优酷",
@@ -41,9 +46,9 @@ public abstract class MyCrawler {
         driver.get(url);
         StringBuilder sb = new StringBuilder("");
         sb.append("<tr>");
-        sb.append(getTag("th", "title"));
-        sb.append(getTag("th", "hot"));
-        sb.append(getTag("th", "date"));
+        sb.append(JobInfoExtractUtils.getTag("th", "title"));
+        sb.append(JobInfoExtractUtils.getTag("th", "hot"));
+        sb.append(JobInfoExtractUtils.getTag("th", "date"));
         sb.append("</tr>\n");
         for (int i = 0; i < pageNum; i++) {
             List<WebElement> wes = getCuCaoTarget();
@@ -51,33 +56,15 @@ public abstract class MyCrawler {
                 String text = we.getText();
                 if (!isAttentioned(text) || isWithOut(text)) continue;
                 JobInfo infoDTO = getInfoDTO(we);
-                sb.append(getTableRow(infoDTO));
-                //                sb.append(getInfo(we) + "\r\n");
-                //                getInfo(we);
+                jobInfoService.bufferAdd(infoDTO);
+                sb.append(JobInfoExtractUtils.getTableRow(infoDTO));
             }
             nextPage();
         }
         return sb.toString();
     }
 
-    private String getTag(String tag, String title) {
-        return "<" + tag + ">" + title + "</" + tag + ">";
-    }
 
-    private String getTableRow(JobInfo infoDTO) {
-        StringBuffer tableRow = new StringBuffer("");
-        tableRow.append("<tr>");
-        tableRow.append(getTdWithHref(infoDTO.getTitle(),infoDTO.getHref()));
-        tableRow.append(getTag("td", infoDTO.getHot() + ""));
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        tableRow.append(getTag("td", sd.format(infoDTO.getTime())));
-        tableRow.append("</tr>\n");
-        return tableRow.toString();
-    }
-
-    private String getTdWithHref(String info, String href) {
-        return "<td><a href='" + href + "'>" + info + "</a></td>";
-    }
 
     private boolean isWithOut(String text) {
         for (String wt : withOut) {
@@ -127,5 +114,13 @@ public abstract class MyCrawler {
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
+    }
+
+    public JobInfoService getJobInfoService() {
+        return jobInfoService;
+    }
+
+    public void setJobInfoService(JobInfoService jobInfoService) {
+        this.jobInfoService = jobInfoService;
     }
 }

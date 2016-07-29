@@ -1,8 +1,8 @@
 package com.leocai.bbscraw.crawlers;
 
-import com.leocai.bbscraw.JobInfo;
-import com.leocai.bbscraw.JobInfoExtractUtils;
-import com.leocai.bbscraw.JobInfoIndex;
+import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.utils.JobInfoExtractUtils;
+import com.leocai.bbscraw.beans.JobInfoIndex;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
