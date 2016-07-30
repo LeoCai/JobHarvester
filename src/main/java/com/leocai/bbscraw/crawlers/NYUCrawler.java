@@ -20,6 +20,7 @@ public class NYUCrawler extends MyCrawler {
 
     public NYUCrawler(String url) {
         super(url);
+        setSource("南邮bbs");
     }
 
     //    public void start() {

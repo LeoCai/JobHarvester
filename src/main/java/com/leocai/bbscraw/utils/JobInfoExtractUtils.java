@@ -17,22 +17,6 @@ public class JobInfoExtractUtils {
 
     private static Logger logger = Logger.getLogger(JobInfoExtractUtils.class);
 
-    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, final SimpleDateFormat sdf) {
-        JobDateParser jobDateParser = new JobDateParser() {
-
-            public Date parse(String dateStr) {
-                Date date = new Date();
-                try {
-                    date = sdf.parse(dateStr);
-                } catch (ParseException e) {
-                    logger.error(e.getMessage(), e);
-                }
-                return date;
-            }
-        };
-        return simpleExtract(we, jobInfoIndex, jobDateParser);
-    }
-
     /**
      * 抽取jobInfo
      * @param we
@@ -48,6 +32,7 @@ public class JobInfoExtractUtils {
         String href = we.findElements(By.tagName("a")).get(jobInfoIndex.getHrefIdnex()).getAttribute("href");
         String timeStr = we.findElements(By.tagName("td")).get(jobInfoIndex.getTimeIndex()).getText();
         String title = we.findElements(By.tagName("td")).get(jobInfoIndex.getTitleIndex()).getText();
+        String comany = AttentionUtils.findComany(title);
         Date time;
         time = jobDateParser.parse(timeStr);
         int hot = 0;
@@ -60,6 +45,7 @@ public class JobInfoExtractUtils {
         jobInfo.setJobDate(time);
         jobInfo.setTitle(title);
         jobInfo.setHot(hot);
+        jobInfo.setCompany(comany);
         return jobInfo;
     }
 }

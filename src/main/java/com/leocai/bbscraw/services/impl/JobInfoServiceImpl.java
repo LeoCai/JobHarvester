@@ -19,10 +19,18 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Service public class JobInfoServiceImpl implements JobInfoService {
 
     Logger logger = Logger.getLogger(getClass());
+    @Autowired private JobInfoMapper jobInfoMapper;
 
+    /**
+     * 并发收集jobinfo
+     */
     private Queue<JobInfo> jobInfos = new ConcurrentLinkedQueue<JobInfo>();
 
-    @Autowired private JobInfoMapper jobInfoMapper;
+    /**
+     * 实际包含的公司列表
+     */
+    //TODO 待优化，用set
+    private List<String> avaliableComanys = new ArrayList<String>(20);
 
     public int insertJobInfo(JobInfo jobInfo) {
         return jobInfoMapper.insertJobInfo(jobInfo);
@@ -65,6 +73,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     public void produceJobInfo(JobInfo infoDTO) {
         jobInfos.add(infoDTO);
+        if (!avaliableComanys.contains(infoDTO.getCompany())) {
+            avaliableComanys.add(infoDTO.getCompany());
+        }
+    }
+
+    public List<String> getAvalibaleComanys() {
+        return avaliableComanys;
     }
 
     public void setJobInfos(Queue<JobInfo> jobInfos) {

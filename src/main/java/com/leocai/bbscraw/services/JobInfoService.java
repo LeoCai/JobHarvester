@@ -14,4 +14,5 @@ public interface JobInfoService {
     List<JobInfo> getJobInfosByDate(Date jobdate);
     boolean bufferAdd(JobInfo infoDTO);
     void produceJobInfo(JobInfo infoDTO);
+    List<String> getAvalibaleComanys();
 }

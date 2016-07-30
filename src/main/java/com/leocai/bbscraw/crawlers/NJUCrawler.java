@@ -21,6 +21,7 @@ public class NJUCrawler extends MyCrawler {
 
     public NJUCrawler(String url) {
         super(url);
+        setSource("南大bbs");
     }
 
     protected JobInfo getInfoDTO(WebElement we) {

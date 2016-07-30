@@ -3,8 +3,7 @@ package com.leocai.bbscraw;
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
 import com.leocai.bbscraw.services.JobInfoService;
-import com.leocai.bbscraw.utils.HtmlUtis;
-import com.leocai.bbscraw.utils.JobInfoExtractUtils;
+import com.leocai.bbscraw.utils.HtmlUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -24,21 +23,18 @@ import java.util.concurrent.*;
  * StringBuffer
  */
 
-@Component
-public class CrawlerStarter {
+@Component public class CrawlerStarter {
 
     Logger logger = Logger.getLogger(getClass());
 
     private HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
 
-    @Autowired
-    private JobInfoService jobInfoService;
+    @Autowired private JobInfoService jobInfoService;
 
     /**
      * 读取学校链接匹配地址，命名规范[School]+[Crawer]
      */
-    @PostConstruct
-    public void init(){
+    @PostConstruct public void init() {
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
@@ -50,20 +46,21 @@ public class CrawlerStarter {
         Set<Object> keys = properties.keySet();
         for (Object key : keys) {
             try {
-                Class<MyCrawler> crawer = (Class<MyCrawler>) classLoader.loadClass("com.leocai.bbscraw.crawlers."+key+"Crawler");
+                Class<MyCrawler> crawer = (Class<MyCrawler>) classLoader.loadClass(
+                        "com.leocai.bbscraw.crawlers." + key + "Crawler");
                 MyCrawler c = crawer.getConstructor(String.class).newInstance(properties.getProperty((String) key));
                 c.setJobInfoService(jobInfoService);
                 map.put((String) key, c);
             } catch (ClassNotFoundException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             } catch (InstantiationException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             } catch (IllegalAccessException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             } catch (NoSuchMethodException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             } catch (InvocationTargetException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             }
             properties.get(key);
         }
@@ -103,25 +100,19 @@ public class CrawlerStarter {
             }
         }
         List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
-        writeRs(HtmlUtis.getRows(jobInfoList));
-
+        writeRs(HtmlUtils.getRows(jobInfoList));
     }
 
-    private void writeRs(String s) {
+    private void writeRs(String content) {
         try {
             FileWriter fileWriter = new FileWriter("./jobInfo.html");
             fileWriter.write("<html >\n" + "<head>\n"
                              + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                             +"<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
-                             + "</head>\n" + "<body>\n" + "    <div>\n" + "        <table>\n");
-            StringBuffer sb = new StringBuffer();
-            sb.append("<tr>");
-            sb.append(HtmlUtis.getTag("th", "title"));
-            sb.append(HtmlUtis.getTag("th", "hot"));
-            sb.append(HtmlUtis.getTag("th", "date"));
-            sb.append("</tr>\n");
-            fileWriter.write(sb.toString());
-            fileWriter.write(s);
+                             + "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">" + "</head>\n"
+                             + "<body>\n" + "    <div>\n" + "        <table>\n");
+            fileWriter.write(HtmlUtils.getRealComanyListInfo(jobInfoService.getAvalibaleComanys()));
+            fileWriter.write(HtmlUtils.getTableHead());
+            fileWriter.write(content);
             fileWriter.write("</table>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
             fileWriter.close();
         } catch (IOException e) {
@@ -133,12 +124,12 @@ public class CrawlerStarter {
     public static void main(String args[]) {
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
-        CrawlerStarter crawlerStarter = applicationContext.getBean("crawlerStarter",CrawlerStarter.class);
+        CrawlerStarter crawlerStarter = applicationContext.getBean("crawlerStarter", CrawlerStarter.class);
         long start = System.nanoTime();
         //        new com.leocai.bbscraw.CrawlerStarter().start();
         crawlerStarter.asynStart();
-
         System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
+        System.exit(0);
 
     }
 

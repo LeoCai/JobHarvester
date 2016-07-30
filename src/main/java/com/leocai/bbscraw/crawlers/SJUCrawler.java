@@ -23,6 +23,7 @@ public class SJUCrawler extends MyCrawler {
 
     public SJUCrawler(String url) {
         super(url);
+        setSource("上交bbs");
     }
 
     @Override protected JobInfo getInfoDTO(WebElement we) {
