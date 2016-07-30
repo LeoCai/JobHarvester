@@ -2,6 +2,7 @@ package com.leocai.bbscraw.utils;
 
 import com.leocai.bbscraw.beans.JobInfoIndex;
 import com.leocai.bbscraw.beans.JobInfo;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,50 +15,46 @@ import java.util.Date;
  */
 public class JobInfoExtractUtils {
 
-    public static String getTag(String tag, String title) {
-        return "<" + tag + ">" + title + "</" + tag + ">";
+    private static Logger logger = Logger.getLogger(JobInfoExtractUtils.class);
+
+    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, final SimpleDateFormat sdf) {
+        JobDateParser jobDateParser = new JobDateParser() {
+
+            public Date parse(String dateStr) {
+                Date date = new Date();
+                try {
+                    date = sdf.parse(dateStr);
+                } catch (ParseException e) {
+                    logger.error(e.getMessage(), e);
+                }
+                return date;
+            }
+        };
+        return simpleExtract(we, jobInfoIndex, jobDateParser);
     }
 
-    public static String getTableRow(JobInfo infoDTO) {
-        StringBuffer tableRow = new StringBuffer("");
-        tableRow.append("<tr>");
-        tableRow.append(getTdWithHref(infoDTO.getTitle(),infoDTO.getHref()));
-        tableRow.append(getTag("td", infoDTO.getHot() + ""));
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        tableRow.append(getTag("td", sd.format(infoDTO.getJobDate())));
-        tableRow.append("</tr>\n");
-        return tableRow.toString();
-    }
-
-    public static String getTdWithHref(String info, String href) {
-        return "<td><a href='" + href + "'>" + info + "</a></td>";
-    }
-
-    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, SimpleDateFormat sdf) {
-        return simpleExtract(we, jobInfoIndex, sdf, null);
-    }
-
-    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, SimpleDateFormat sdf,
-                                        SimpleDateFormat sdf2) {
+    /**
+     * 抽取jobInfo
+     * @param we
+     * 粗糙定位节点
+     * @param jobInfoIndex
+     * 对应的索引
+     * @param jobDateParser
+     * 日期转换接口
+     * @return
+     */
+    public static JobInfo simpleExtract(WebElement we, JobInfoIndex jobInfoIndex, JobDateParser jobDateParser) {
         JobInfo jobInfo = new JobInfo();
         String href = we.findElements(By.tagName("a")).get(jobInfoIndex.getHrefIdnex()).getAttribute("href");
         String timeStr = we.findElements(By.tagName("td")).get(jobInfoIndex.getTimeIndex()).getText();
         String title = we.findElements(By.tagName("td")).get(jobInfoIndex.getTitleIndex()).getText();
-        Date time = new Date();
-        try {
-            time = sdf.parse(timeStr);
-        } catch (ParseException e) {
-            try {
-                if (sdf2 != null) time = sdf2.parse(timeStr);
-            } catch (ParseException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-        }
+        Date time;
+        time = jobDateParser.parse(timeStr);
         int hot = 0;
         try {
             hot = Integer.parseInt(we.findElements(By.tagName("td")).get(jobInfoIndex.getHotIndex()).getText());
         } catch (NumberFormatException e) {
+            logger.info(e.getMessage(), e);
         }
         jobInfo.setHref(href);
         jobInfo.setJobDate(time);

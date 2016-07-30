@@ -3,6 +3,7 @@ package com.leocai.bbscraw.crawlers;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.JobInfoExtractUtils;
 import com.leocai.bbscraw.beans.JobInfo;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +16,12 @@ import java.util.List;
 
 /**
  * Created by caiqingliang on 2016/7/24.
+ * 核心爬虫类，若要扩展必须继承它
  */
 public abstract class MyCrawler {
+
+    protected Logger logger = Logger.getLogger(getClass());
+
 
     private JobInfoService jobInfoService;
 
@@ -41,31 +46,33 @@ public abstract class MyCrawler {
         driver = new FirefoxDriver(profile);
     }
 
+    /**
+     * 模板模式算法
+     * @return
+     */
     public String start() {
         init();
         driver.get(url);
         StringBuilder sb = new StringBuilder("");
-        sb.append("<tr>");
-        sb.append(JobInfoExtractUtils.getTag("th", "title"));
-        sb.append(JobInfoExtractUtils.getTag("th", "hot"));
-        sb.append(JobInfoExtractUtils.getTag("th", "date"));
-        sb.append("</tr>\n");
         for (int i = 0; i < pageNum; i++) {
             List<WebElement> wes = getCuCaoTarget();
             for (WebElement we : wes) {
                 String text = we.getText();
                 if (!isAttentioned(text) || isWithOut(text)) continue;
                 JobInfo infoDTO = getInfoDTO(we);
-                jobInfoService.bufferAdd(infoDTO);
-                sb.append(JobInfoExtractUtils.getTableRow(infoDTO));
+                jobInfoService.produceJobInfo(infoDTO);
+//                sb.append(JobInfoExtractUtils.getTableRow(infoDTO));
             }
             nextPage();
         }
         return sb.toString();
     }
 
-
-
+    /**
+     * 过滤不想要的//TODO带抽取
+     * @param text
+     * @return
+     */
     private boolean isWithOut(String text) {
         for (String wt : withOut) {
             if (text.contains(wt)) return true;
@@ -73,24 +80,21 @@ public abstract class MyCrawler {
         return false;
     }
 
-    protected JobInfo getInfoDTO(WebElement we) {
-        return null;
-    }
+    protected abstract JobInfo getInfoDTO(WebElement we);
 
-    protected String getInfo(WebElement we) {
-        try {
-            return "<li><a href='" + we.findElement(By.tagName("a")).getAttribute("href") + "'>" + we.getText()
-                   + "</a></li>";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
+    /**
+     * 获取粗糙的目标，可能需要重写
+     * @return
+     */
     protected List<WebElement> getCuCaoTarget() {
         return driver.findElements(By.tagName("tr"));
     }
 
+    /**
+     * 是否为关注的代码
+     * @param content
+     * @return
+     */
     boolean isAttentioned(String content) {
         if (content.length() > 300) return false;
         for (String at : attention) {
@@ -99,6 +103,9 @@ public abstract class MyCrawler {
         return false;
     }
 
+    /**
+     * 下一页，可能需要重写
+     */
     protected void nextPage() {
         WebElement el = driver.findElement(By.linkText("上一页"));
         el.click();

@@ -10,7 +10,8 @@ import java.util.List;
  */
 public interface JobInfoService {
     int insertJobInfo(JobInfo jobInfo);
-    List<JobInfo> getJobInfos();
+    List<JobInfo> getJobInfosFromMemory();
     List<JobInfo> getJobInfosByDate(Date jobdate);
     boolean bufferAdd(JobInfo infoDTO);
+    void produceJobInfo(JobInfo infoDTO);
 }

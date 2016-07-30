@@ -1,13 +1,18 @@
 package com.leocai.bbscraw.crawlers;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.utils.JobDateParser;
+import com.leocai.bbscraw.utils.JobDateUtils;
 import com.leocai.bbscraw.utils.JobInfoExtractUtils;
 import com.leocai.bbscraw.beans.JobInfoIndex;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by caiqingliang on 2016/7/24.
@@ -18,40 +23,27 @@ public class NJUCrawler extends MyCrawler {
         super(url);
     }
 
-    //    protected void getInfo(WebElement we) {
-//        WebElement link = we.findElement(By.tagName("a"));
-//        System.out.println(link.getAttribute("href") + "\t" + we.getText());
-//    }
-
-    protected List<WebElement> getCuCaoTarget() {
-        return driver.findElements(By.tagName("tr"));
-    }
-
-    protected JobInfo getInfoDTO(WebElement we){
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd HH:mm");
+    protected JobInfo getInfoDTO(WebElement we) {
         JobInfoIndex jobInfoIndex = new JobInfoIndex();
         jobInfoIndex.setHotIndex(6);
         jobInfoIndex.setHrefIdnex(1);
         jobInfoIndex.setTimeIndex(4);
         jobInfoIndex.setTitleIndex(5);
-        return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, sdf);
-    }
+        JobDateParser jobDateParser = new JobDateParser() {
 
-
-
-    protected String getInfo(WebElement we) {
-        try {
-            return "<li><a href='"+we.findElements(By.tagName("a")).get(1).getAttribute("href") + "'><pre>" + we.getText()+"</pre></a></li>";
-        } catch (Exception e) {
-//            e.printStackTrace();
-        }
-        return "";
-    }
-
-    protected void nextPage() {
-        WebElement el = driver.findElement(By.linkText("上一页"));
-        el.click();
-        currentPage++;
+            public Date parse(String dateStr) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm", Locale.ENGLISH);
+                Date date = new Date();
+                String yearStr = JobDateUtils.getYearStr();
+                try {
+                    date = sdf.parse(yearStr + " " + dateStr);
+                } catch (ParseException e) {
+                    logger.error(e.getMessage(), e);
+                }
+                return date;
+            }
+        };
+        return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, jobDateParser);
     }
 
 }

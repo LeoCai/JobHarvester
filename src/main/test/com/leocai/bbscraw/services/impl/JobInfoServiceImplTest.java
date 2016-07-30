@@ -8,13 +8,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by caiqingliang on 2016/7/29.
@@ -38,9 +35,8 @@ public class JobInfoServiceImplTest extends AbstractJUnit4SpringContextTests {
     }
 
     @Test public void getJobInfo() throws Exception {
-        List<JobInfo> jobinfos = jobInfoService.getJobInfos();
+        List<JobInfo> jobinfos = jobInfoService.getJobInfosFromMemory();
         System.out.println(jobinfos.toString());
-
     }
 
     @Test public void getJobByDate() throws Exception {

@@ -1,12 +1,19 @@
 package com.leocai.bbscraw.crawlers;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.utils.JobDateParser;
+import com.leocai.bbscraw.utils.JobDateUtils;
 import com.leocai.bbscraw.utils.JobInfoExtractUtils;
 import com.leocai.bbscraw.beans.JobInfoIndex;
+import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.logging.impl.Jdk14Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -19,25 +26,26 @@ public class SJUCrawler extends MyCrawler {
     }
 
     @Override protected JobInfo getInfoDTO(WebElement we) {
-        JobInfoIndex jobInfoIndex=new JobInfoIndex();
+        JobInfoIndex jobInfoIndex = new JobInfoIndex();
         jobInfoIndex.setHrefIdnex(1);
         jobInfoIndex.setTimeIndex(3);
         jobInfoIndex.setTitleIndex(4);
-        SimpleDateFormat sdf=new SimpleDateFormat("MMM dd HH:mm", Locale.ENGLISH);
-        return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, sdf);
-    }
+        JobDateParser jobDateParser = new JobDateParser() {
 
-    protected String getInfo(WebElement we) {
-        try {
-            return "<li><a href='" + we.findElements(By.tagName("a")).get(1).getAttribute("href") + "'><pre>" + we.getText() + "</pre></a></li>";
-        } catch (Exception e) {
-            //            e.printStackTrace();
-        }
-        return "";
+            public Date parse(String dateStr) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm", Locale.ENGLISH);
+                Date date = new Date();
+                if(org.apache.commons.lang3.StringUtils.isEmpty(dateStr)) return date;
+                String yearStr = JobDateUtils.getYearStr();
+                try {
+                    date = sdf.parse(yearStr + " " + dateStr);
+                } catch (ParseException e) {
+                    logger.error(e.getMessage(), e);
+                }
+                return date;
+            }
+        };
+        return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, jobDateParser);
     }
-
-//    protected List<WebElement> getCuCaoTarget(){
-//        return driver.findElements(By.tagName("td"));
-//    }
 
 }

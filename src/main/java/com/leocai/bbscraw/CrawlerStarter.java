@@ -1,7 +1,10 @@
 package com.leocai.bbscraw;
 
+import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
 import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.utils.HtmlUtis;
+import com.leocai.bbscraw.utils.JobInfoExtractUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -93,14 +96,14 @@ public class CrawlerStarter {
         for (Future<String> f : fts) {
             try {
                 String content = f.get();
-                sb.append(content);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        writeRs(sb.toString());
+        List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
+        writeRs(HtmlUtis.getRows(jobInfoList));
 
     }
 
@@ -109,7 +112,15 @@ public class CrawlerStarter {
             FileWriter fileWriter = new FileWriter("./jobInfo.html");
             fileWriter.write("<html >\n" + "<head>\n"
                              + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
+                             +"<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
                              + "</head>\n" + "<body>\n" + "    <div>\n" + "        <table>\n");
+            StringBuffer sb = new StringBuffer();
+            sb.append("<tr>");
+            sb.append(HtmlUtis.getTag("th", "title"));
+            sb.append(HtmlUtis.getTag("th", "hot"));
+            sb.append(HtmlUtis.getTag("th", "date"));
+            sb.append("</tr>\n");
+            fileWriter.write(sb.toString());
             fileWriter.write(s);
             fileWriter.write("</table>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
             fileWriter.close();
