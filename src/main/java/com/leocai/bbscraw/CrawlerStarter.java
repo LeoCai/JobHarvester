@@ -3,6 +3,7 @@ package com.leocai.bbscraw;
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
 import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.services.impl.JobInfoServiceImpl;
 import com.leocai.bbscraw.utils.HtmlUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,36 +90,19 @@ import java.util.concurrent.*;
             });
             fts.add(ft);
         }
-        StringBuilder sb = new StringBuilder("");
         for (Future<String> f : fts) {
             try {
-                String content = f.get();
+                f.get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
-        writeRs(HtmlUtils.getRows(jobInfoList));
-    }
-
-    private void writeRs(String content) {
-        try {
-            FileWriter fileWriter = new FileWriter("./jobInfo.html");
-            fileWriter.write("<html >\n" + "<head>\n"
-                             + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                             + "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">" + "</head>\n"
-                             + "<body>\n" + "    <div>\n" + "        <table>\n");
-            fileWriter.write(HtmlUtils.getRealComanyListInfo(jobInfoService.getAvalibaleComanys()));
-            fileWriter.write(HtmlUtils.getTableHead());
-            fileWriter.write(content);
-            fileWriter.write("</table>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!isDBEnabled()) {
+            List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
+            HtmlUtils.writeHtml(jobInfoList, jobInfoService);
         }
-
     }
 
     public static void main(String args[]) {
@@ -140,4 +124,10 @@ import java.util.concurrent.*;
     public void setJobInfoService(JobInfoService jobInfoService) {
         this.jobInfoService = jobInfoService;
     }
+
+    //TODO需要调整
+    public boolean isDBEnabled() {
+        return JobInfoServiceImpl.DBEnabled;
+    }
+
 }

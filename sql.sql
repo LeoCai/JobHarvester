@@ -1,0 +1,14 @@
+DROP DATABASE jobharvest
+CREATE DATABASE jobharvest  DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 
+USE jobharvest;
+DROP TABLE jobinfo;
+CREATE TABLE IF NOT EXISTS jobinfo(id INT PRIMARY KEY AUTO_INCREMENT,
+ title TEXT, hot INT, 
+ jobdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+ company CHAR(20),
+ href VARCHAR(300),
+ isread BOOLEAN,
+ source CHAR(20) 
+ )
+ SHOW VARIABLES LIKE 'char%'
+ 

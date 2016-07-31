@@ -29,7 +29,7 @@ public abstract class MyCrawler {
 
     WebDriver driver;
 
-    private int pageNum = 10;
+    private int pageNum = 50;
 
     protected int currentPage = 1;
     /**

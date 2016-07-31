@@ -16,22 +16,19 @@ import java.util.List;
 /**
  * Created by caiqingliang on 2016/7/29.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-config.xml")
-public class JobInfoServiceImplTest extends AbstractJUnit4SpringContextTests {
+@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class JobInfoServiceImplTest
+        extends AbstractJUnit4SpringContextTests {
 
-    @Autowired
-    CrawlerStarter crawlerStarter;
+    @Autowired CrawlerStarter crawlerStarter;
 
-    @Autowired
-    JobInfoService jobInfoService;
+    @Autowired JobInfoService jobInfoService;
 
     @Test public void insertJobInfo() throws Exception {
         JobInfo jobInfo = new JobInfo();
-        jobInfo.setTitle("dfgdfg");
+        jobInfo.setTitle("阿萨");
         jobInfo.setJobDate(new Date());
-        jobInfoService.insertJobInfo(jobInfo);
-        System.out.println("asd");
+        int r = jobInfoService.insertJobInfo(jobInfo);
+        assert r >= 1;
     }
 
     @Test public void getJobInfo() throws Exception {
@@ -44,4 +41,8 @@ public class JobInfoServiceImplTest extends AbstractJUnit4SpringContextTests {
         System.out.println(jobInfos.toString());
     }
 
+    @Test public void createTableIfNotExits() throws Exception {
+        jobInfoService.createTableIfNotExits();
+
+    }
 }

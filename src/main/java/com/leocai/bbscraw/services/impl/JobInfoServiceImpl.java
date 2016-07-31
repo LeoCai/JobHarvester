@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -31,6 +32,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
      */
     //TODO 待优化，用set
     private List<String> avaliableComanys = new ArrayList<String>(20);
+    public static boolean      DBEnabled        = true;
 
     public int insertJobInfo(JobInfo jobInfo) {
         return jobInfoMapper.insertJobInfo(jobInfo);
@@ -72,14 +74,35 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public void produceJobInfo(JobInfo infoDTO) {
-        jobInfos.add(infoDTO);
-        if (!avaliableComanys.contains(infoDTO.getCompany())) {
-            avaliableComanys.add(infoDTO.getCompany());
+        if (isDBEnabled()) bufferAdd(infoDTO);
+        else{
+            jobInfos.add(infoDTO);
+            if (!avaliableComanys.contains(infoDTO.getCompany())) {
+                avaliableComanys.add(infoDTO.getCompany());
+            }
         }
     }
 
     public List<String> getAvalibaleComanys() {
+        if(isDBEnabled()) return getCompanys();
         return avaliableComanys;
+    }
+
+    public List<JobInfo> getJobInfos() {
+        return jobInfoMapper.getJobInfos();
+    }
+
+    @PostConstruct
+    public void createTableIfNotExits() {
+        try {
+            jobInfoMapper.createTableIfNotExits();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<String> getCompanys() {
+        return jobInfoMapper.getCompanys();
     }
 
     public void setJobInfos(Queue<JobInfo> jobInfos) {
@@ -88,5 +111,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     public void setJobInfoMapper(JobInfoMapper jobInfoMapper) {
         this.jobInfoMapper = jobInfoMapper;
+    }
+
+    public boolean isDBEnabled() {
+        return DBEnabled;
+    }
+
+    public void setDBEnabled(boolean DBEnabled) {
+        this.DBEnabled = DBEnabled;
     }
 }

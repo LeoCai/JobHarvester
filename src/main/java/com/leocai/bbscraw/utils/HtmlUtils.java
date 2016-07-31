@@ -1,7 +1,10 @@
 package com.leocai.bbscraw.utils;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.services.JobInfoService;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class HtmlUtils {
         StringBuffer sb = new StringBuffer();
         sb.append("<select>");
         for (String company : avalibaleComanys) {
-            sb.append(getOption(company, ""));
+            sb.append(getOption(company, company));
         }
         sb.append("</select>\n");
         return sb.toString();
@@ -65,5 +68,31 @@ public class HtmlUtils {
     //TODO 加入value
     private static String getOption(String company, String value) {
         return "<option value='" + value + "'/>" + company + "</option>";
+    }
+
+    //TODO 待重构
+    public static void writeHtml(List<JobInfo> jobInfoList, JobInfoService jobInfoService) {
+        writeRs(HtmlUtils.getRows(jobInfoList), jobInfoService);
+    }
+
+    private static void writeRs(String content, JobInfoService jobInfoService) {
+        try {
+            FileWriter fileWriter = new FileWriter("./jobInfo.html");
+            fileWriter.write("<html >\n" + "<head>\n"
+                             + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
+                             + "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">"
+                             + "<script type=\"text/javascript\" src=\"jquery-3.1.0.min.js\"></script>\n"
+                             + "<script type=\"text/javascript\" src=\"core.js\"></script>\n"
+                             + "</head>\n" + "<body>\n"
+                             + "    <div>\n" + "        <table>\n");
+            fileWriter.write(HtmlUtils.getRealComanyListInfo(jobInfoService.getAvalibaleComanys()));
+            fileWriter.write(HtmlUtils.getTableHead());
+            fileWriter.write(content);
+            fileWriter.write("</table>\n" + "\n" + "</div>\n" + "</body>\n" + "\n" + "</html>");
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
