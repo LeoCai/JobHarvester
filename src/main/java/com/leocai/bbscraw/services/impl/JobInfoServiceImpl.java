@@ -118,6 +118,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         return jobInfoMapper.getLatestMd5(source);
     }
 
+    public Date getLatestDateBySource(String source) {
+        return null;
+    }
+
+    public List<JobInfo> getJobInfosSince(Date date) {
+        return null;
+    }
+
     public boolean isDBEnabled() {
         return DBEnabled;
     }

@@ -70,6 +70,7 @@ public class CrawlerServiceImpl implements CrawlerService {
      * 利用future进行收集
      * 若未启用mysql，将得到的数据写入到html中
      */
+    //TODO 是否可以多个标签页并行
     public void asynStart() {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         Set<String> set = map.keySet();
@@ -108,6 +109,7 @@ public class CrawlerServiceImpl implements CrawlerService {
     /**
      * 类加载器加载爬虫类放到map中
      */
+    //TODO properties 使用工厂模式
     public void loadCrawlers() {
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -124,6 +126,7 @@ public class CrawlerServiceImpl implements CrawlerService {
                         "com.leocai.bbscraw.crawlers." + key + "Crawler");
                 MyCrawler c = crawer.getConstructor(String.class).newInstance(properties.getProperty((String) key));
                 c.setJobInfoService(jobInfoService);
+                c.setSource((String)key);
                 map.put((String) key, c);
             } catch (ClassNotFoundException e) {
                 logger.error(e.getMessage(), e);
@@ -145,6 +148,16 @@ public class CrawlerServiceImpl implements CrawlerService {
     }
 
     public void continueCraw() {
+        Set<String> keys = map.keySet();
+        for(String key:keys){
+//            String latestMd5 = jobInfoService.getLatestMd5(key);
+            Date date = jobInfoService.getLatestDateBySource(key);
+            MyCrawler crawler = map.get(key);
+            crawler.continueStart(date);
+//            List<JobInfo> jobinfos = jobInfoService.getJobInfosSince(date);
+        }
+
+//        jobInfoService.getLatestMd5();
 
     }
 

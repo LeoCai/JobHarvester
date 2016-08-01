@@ -24,7 +24,8 @@ import org.springframework.stereotype.Component;
     }
 
     public void start() {
-        crawlerService.crawByPage();
+//        crawlerService.crawByPage();
+        crawlerService.continueCraw();
     }
 
 }

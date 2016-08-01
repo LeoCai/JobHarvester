@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -125,5 +126,9 @@ public abstract class MyCrawler {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public void continueStart(Date date) {
+
     }
 }

@@ -74,7 +74,17 @@ public interface JobInfoService {
      */
     String getLatestMd5(String source);
 
+    /**
+     * 根据source获取数据库中最近的日期
+     * @param source
+     * @return
+     */
+    Date getLatestDateBySource(String source);
 
-
-
+    /**
+     * 从某个日期开始到现在
+     * @param date
+     * @return
+     */
+    List<JobInfo> getJobInfosSince(Date date);
 }
