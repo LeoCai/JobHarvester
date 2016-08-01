@@ -15,7 +15,7 @@ public interface JobInfoService {
      * 插入新的jobinfo
      *
      * @param jobInfo
-     * @return 成功返回1
+     * @return 不成功返回-1
      */
     int insertJobInfo(JobInfo jobInfo);
 
@@ -65,6 +65,16 @@ public interface JobInfoService {
      * @return
      */
     List<String> getCompanys();
+
+    /**
+     * 根据source获取最近的MD5
+     *
+     * @param source
+     * @return
+     */
+    String getLatestMd5(String source);
+
+
 
 
 }

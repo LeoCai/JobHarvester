@@ -3,6 +3,7 @@ import redis.clients.jedis.Jedis;
 /**
  * Created by caiqingliang on 2016/7/28.
  */
+//TODO Redis 待配置
 public class RedisTest {
 
     public static void main(String args[]){

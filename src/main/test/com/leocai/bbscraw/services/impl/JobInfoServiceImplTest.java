@@ -1,6 +1,5 @@
 package com.leocai.bbscraw.services.impl;
 
-import com.leocai.bbscraw.CrawlerStarter;
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.services.JobInfoService;
 import org.junit.Test;
@@ -19,7 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class JobInfoServiceImplTest
         extends AbstractJUnit4SpringContextTests {
 
-    @Autowired CrawlerStarter crawlerStarter;
+    @Autowired CrawlerServiceImpl crawlerServiceImpl;
 
     @Autowired JobInfoService jobInfoService;
 

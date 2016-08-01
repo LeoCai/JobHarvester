@@ -1,10 +1,10 @@
 package com.leocai.bbscraw.crawlers;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.beans.JobInfoIndex;
 import com.leocai.bbscraw.utils.JobDateParser;
 import com.leocai.bbscraw.utils.JobDateUtils;
 import com.leocai.bbscraw.utils.JobInfoExtractUtils;
-import com.leocai.bbscraw.beans.JobInfoIndex;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -22,29 +22,6 @@ public class NYUCrawler extends MyCrawler {
         super(url);
         setSource("南邮bbs");
     }
-
-    //    public void start() {
-    //        WebElement ls = driver.findElement(By.className("board-list"));
-    //        List<WebElement> els = ls.findElements(By.tagName("tr"));
-    //        for (WebElement we : els) {
-    //            try {
-    //                String text = we.findElement(By.tagName("a")).getAttribute("href") + "\t" + we.getText();
-    //                if (isAttentioned(we.getText())) {
-    //                    System.out.println(text);
-    //                }
-    //            } catch (Exception e) {
-    //                //                e.printStackTrace();
-    //            }
-    //        }
-    //    }
-
-    //    protected void getInfo(WebElement we) {
-    //        try {
-    //            System.out.println(we.findElement(By.tagName("a")).getAttribute("href") + "\t" + we.getText());
-    //        } catch (Exception e) {
-    //            e.printStackTrace();
-    //        }
-    //    }
 
     @Override protected JobInfo getInfoDTO(WebElement we) {
 

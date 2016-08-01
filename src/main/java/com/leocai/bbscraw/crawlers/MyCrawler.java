@@ -5,6 +5,7 @@ import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AttentionUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -27,7 +28,7 @@ public abstract class MyCrawler {
      */
     private String url;
     //TODO 爬的总页数
-    private int pageNum = 50;    //TODO 当前页
+    private int pageNum = 50;
     /**
      * 爬虫来源
      */
@@ -45,6 +46,7 @@ public abstract class MyCrawler {
         profile.setPreference("permissions.default.stylesheet", 2);
         profile.setPreference("permissions.default.image", 2);
         driver = new FirefoxDriver(profile);
+        driver.manage().window().setPosition(new Point(-2000, 0));
     }
 
     /**

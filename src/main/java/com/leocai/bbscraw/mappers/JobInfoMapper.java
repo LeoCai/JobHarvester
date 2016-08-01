@@ -13,11 +13,17 @@ import java.util.List;
  */
 public interface JobInfoMapper {
 
+    //TODO company 单独建表
+    //TODO source 单独建表
+
     //CREATE DATABASE jobharvest  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
-    @Insert("CREATE TABLE IF NOT EXISTS jobinfo(id INT PRIMARY KEY AUTO_INCREMENT,\n" + " title TEXT, hot INT, \n"
-            + " jobdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \n" + " company CHAR(20),\n" + " href VARCHAR(300),\n"
-            + " isread BOOLEAN,\n" + " source CHAR(20), contentmd5 char(32) unique \n"
+    @Insert("CREATE TABLE IF NOT EXISTS jobinfo(id INT PRIMARY KEY AUTO_INCREMENT,\n"
+            + " title TEXT NOT NULL, hot INT NOT NULL DEFAULT 0, \n"
+            + " jobdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \n" + " company CHAR(15) NOT NULL DEFAULT '未识别',\n"
+            + " href VARCHAR(300) NOT NULL DEFAULT '',\n" + " contentmd5 CHAR(32) UNIQUE NOT NULL DEFAULT '',\n"
+            + " isread BOOLEAN NOT NULL DEFAULT FALSE,\n" + " source CHAR(20) NOT NULL DEFAULT '无',\n"
+            + " INDEX index_md5(contentmd5),\n" + " INDEX index_jobdate(jobdate)\n"
             + " )") void createTableIfNotExits();
 
     @Insert(" DROP TABLE IF EXISTS jobinfo\n") void dropTableIfExists();
@@ -32,5 +38,6 @@ public interface JobInfoMapper {
 
     @Select("select distinct(company) from jobinfo") List<String> getCompanys();
 
-
+    @Select("select contentmd5 from jobinfo where source = #{source} order by jobdate desc limit 1") String getLatestMd5(
+            @Param("source") String source);
 }

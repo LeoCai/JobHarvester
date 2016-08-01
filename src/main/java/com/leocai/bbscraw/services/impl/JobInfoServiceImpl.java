@@ -3,7 +3,10 @@ package com.leocai.bbscraw.services.impl;
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
 import com.leocai.bbscraw.services.JobInfoService;
-import org.apache.commons.lang3.time.DateUtils;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,25 +20,31 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by caiqingliang on 2016/7/29.
  */
+
 @Service public class JobInfoServiceImpl implements JobInfoService {
 
-    Logger logger = Logger.getLogger(getClass());
-    @Autowired private JobInfoMapper jobInfoMapper;
-
+    public static boolean DBEnabled = true;
+    private       Logger  logger    = Logger.getLogger(getClass());
+    @Autowired @Getter @Setter private JobInfoMapper jobInfoMapper;
     /**
      * 并发收集jobinfo
      */
-    private Queue<JobInfo> jobInfos = new ConcurrentLinkedQueue<JobInfo>();
-
+    private Queue<JobInfo> jobInfos         = new ConcurrentLinkedQueue<JobInfo>();
     /**
      * 实际包含的公司列表
      */
     //TODO 待优化，用set
-    private List<String> avaliableComanys = new ArrayList<String>(20);
-    public static boolean      DBEnabled        = true;
+    private List<String>   avaliableComanys = new ArrayList<String>(20);
 
     public int insertJobInfo(JobInfo jobInfo) {
-        return jobInfoMapper.insertJobInfo(jobInfo);
+        int rs = -1;
+        try {
+            rs = jobInfoMapper.insertJobInfo(jobInfo);
+        } catch (Exception e) {
+            if (!(e instanceof MySQLIntegrityConstraintViolationException)) logger.error(e.getMessage(), e);
+            else logger.info(e.getMessage(), e);
+        }
+        return rs;
     }
 
     public List<JobInfo> getJobInfosFromMemory() {
@@ -56,8 +65,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         String startStr = sd.format(jobdate);
         String endStr = sd.format(jobdate.getTime() + 24 * 60 * 60 * 1000);
-        Date start = null;
-        Date end = null;
+        Date start;
+        Date end;
         try {
             start = sd.parse(startStr);
             end = sd.parse(endStr);
@@ -70,12 +79,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     public boolean bufferAdd(JobInfo infoDTO) {
         int i = insertJobInfo(infoDTO);
-        return i != 0;
+        return i != -1;
     }
 
     public void produceJobInfo(JobInfo infoDTO) {
+        infoDTO.setContentMD5(DigestUtils.md5Hex(infoDTO.getTitle()));//进行MD5
         if (isDBEnabled()) bufferAdd(infoDTO);
-        else{
+        else {
             jobInfos.add(infoDTO);
             if (!avaliableComanys.contains(infoDTO.getCompany())) {
                 avaliableComanys.add(infoDTO.getCompany());
@@ -84,7 +94,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public List<String> getAvalibaleComanys() {
-        if(isDBEnabled()) return getCompanys();
+        if (isDBEnabled()) return getCompanys();
         return avaliableComanys;
     }
 
@@ -92,12 +102,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         return jobInfoMapper.getJobInfos();
     }
 
-    @PostConstruct
-    public void createTableIfNotExits() {
+    @PostConstruct public void createTableIfNotExits() {
         try {
             jobInfoMapper.createTableIfNotExits();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -105,19 +114,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         return jobInfoMapper.getCompanys();
     }
 
-    public void setJobInfos(Queue<JobInfo> jobInfos) {
-        this.jobInfos = jobInfos;
-    }
-
-    public void setJobInfoMapper(JobInfoMapper jobInfoMapper) {
-        this.jobInfoMapper = jobInfoMapper;
+    public String getLatestMd5(String source) {
+        return jobInfoMapper.getLatestMd5(source);
     }
 
     public boolean isDBEnabled() {
         return DBEnabled;
     }
 
-    public void setDBEnabled(boolean DBEnabled) {
-        this.DBEnabled = DBEnabled;
-    }
 }

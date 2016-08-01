@@ -14,14 +14,14 @@ import java.util.List;
  * Created by caiqingliang on 2016/7/31.
  * 从数据库读取JobInfo，并写入Html
  */
-@Component public class CrawerReader {
+@Component public class CrawlerReader {
 
     @Autowired JobInfoService jobInfoService;
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
-        CrawerReader crawerReader = applicationContext.getBean("crawerReader", CrawerReader.class);
-        crawerReader.start();
+        CrawlerReader crawlerReader = applicationContext.getBean("crawlerReader", CrawlerReader.class);
+        crawlerReader.start();
 
     }
 
