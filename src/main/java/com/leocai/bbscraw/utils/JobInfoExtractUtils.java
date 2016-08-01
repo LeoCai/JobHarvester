@@ -1,17 +1,16 @@
 package com.leocai.bbscraw.utils;
 
-import com.leocai.bbscraw.beans.JobInfoIndex;
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.beans.JobInfoIndex;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Created by caiqingliang on 2016/7/28.
+ * 抽取JobInfo工具类
  */
 public class JobInfoExtractUtils {
 

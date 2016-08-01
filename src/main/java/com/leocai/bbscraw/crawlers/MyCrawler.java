@@ -1,17 +1,14 @@
 package com.leocai.bbscraw.crawlers;
 
+import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AttentionUtils;
-import com.leocai.bbscraw.utils.JobInfoExtractUtils;
-import com.leocai.bbscraw.beans.JobInfo;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -21,17 +18,16 @@ import java.util.List;
  */
 public abstract class MyCrawler {
 
-    protected Logger logger = Logger.getLogger(getClass());
-
-    private JobInfoService jobInfoService;
-
-    private String url;
-
+    protected Logger logger      = Logger.getLogger(getClass());
+    protected int    currentPage = 1;
     WebDriver driver;
-
-    private int pageNum = 50;
-
-    protected int currentPage = 1;
+    private JobInfoService jobInfoService;
+    /**
+     * 页面url
+     */
+    private String url;
+    //TODO 爬的总页数
+    private int pageNum = 50;    //TODO 当前页
     /**
      * 爬虫来源
      */
@@ -41,6 +37,9 @@ public abstract class MyCrawler {
         this.url = url;
     }
 
+    /**
+     * 初始化，禁用图片css
+     */
     private void init() {
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("permissions.default.stylesheet", 2);
@@ -50,6 +49,12 @@ public abstract class MyCrawler {
 
     /**
      * 模板模式算法
+     * 粗糙定位目标位置:比如table
+     *      过滤想要和不想要的信息
+     *      定位行位置
+     *      抽取封装JobInfo信息
+     *      调用服务进行处理（此处可异步）
+     * 下一页
      *
      * @return
      */
@@ -65,13 +70,18 @@ public abstract class MyCrawler {
                 JobInfo infoDTO = getInfoDTO(we);
                 infoDTO.setSource(source);
                 jobInfoService.produceJobInfo(infoDTO);
-                //                sb.append(JobInfoExtractUtils.getTableRow(infoDTO));
             }
             nextPage();
         }
         return sb.toString();
     }
 
+    /**
+     * 根据行抽取JobInfo，需要重写
+     *
+     * @param we
+     * @return
+     */
     protected abstract JobInfo getInfoDTO(WebElement we);
 
     /**

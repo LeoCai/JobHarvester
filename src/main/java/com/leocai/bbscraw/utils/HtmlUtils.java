@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by caiqingliang on 2016/7/30.
+ * HTML生成器
  */
 public class HtmlUtils {
 
@@ -21,7 +22,7 @@ public class HtmlUtils {
         return sb.toString();
     }
 
-    //TODO设计待优化，需要改多个地方
+    //TODO 设计待优化，需要改多个地方
     public static String getTableHead() {
         StringBuffer sb = new StringBuffer();
         sb.append("<tr>");

@@ -12,22 +12,22 @@ import java.util.List;
 
 /**
  * Created by caiqingliang on 2016/7/31.
+ * 从数据库读取JobInfo，并写入Html
  */
 @Component public class CrawerReader {
 
     @Autowired JobInfoService jobInfoService;
-
-    public void start() {
-        List<JobInfo> jobInfoList = jobInfoService.getJobInfos();
-        HtmlUtils.writeHtml(jobInfoList, jobInfoService);
-    }
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
         CrawerReader crawerReader = applicationContext.getBean("crawerReader", CrawerReader.class);
         crawerReader.start();
 
+    }
 
+    public void start() {
+        List<JobInfo> jobInfoList = jobInfoService.getJobInfos();
+        HtmlUtils.writeHtml(jobInfoList, jobInfoService);
     }
 
 }

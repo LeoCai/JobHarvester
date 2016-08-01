@@ -2,6 +2,7 @@ package com.leocai.bbscraw.beans;
 
 /**
  * Created by caiqingliang on 2016/7/28.
+ * 用于适配不用网站的属性索引
  */
 public class JobInfoIndex {
 

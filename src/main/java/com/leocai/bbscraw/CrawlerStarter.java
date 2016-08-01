@@ -12,7 +12,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -28,11 +27,28 @@ import java.util.concurrent.*;
 
     Logger logger = Logger.getLogger(getClass());
 
+    /**
+     * 用于存放各个爬虫类
+     */
     private HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
 
     @Autowired private JobInfoService jobInfoService;
 
+    public static void main(String args[]) {
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        CrawlerStarter crawlerStarter = applicationContext.getBean("crawlerStarter", CrawlerStarter.class);
+        long start = System.nanoTime();
+        //        new com.leocai.bbscraw.CrawlerStarter().start();
+        crawlerStarter.asynStart();
+        System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
+        System.exit(0);
+
+    }
+
     /**
+     * 使用类加载器加载各个爬虫类
+     * 在school.properties中配置对于url
      * 读取学校链接匹配地址，命名规范[School]+[Crawer]
      */
     @PostConstruct public void init() {
@@ -75,6 +91,11 @@ import java.util.concurrent.*;
         }
     }
 
+    /**
+     * 利用线程池并行收集各个高校的信息
+     * 利用future进行收集
+     * 若未启用mysql，将得到的数据写入到html中
+     */
     public void asynStart() {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         Set<String> set = map.keySet();
@@ -103,18 +124,6 @@ import java.util.concurrent.*;
             List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
             HtmlUtils.writeHtml(jobInfoList, jobInfoService);
         }
-    }
-
-    public static void main(String args[]) {
-
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
-        CrawlerStarter crawlerStarter = applicationContext.getBean("crawlerStarter", CrawlerStarter.class);
-        long start = System.nanoTime();
-        //        new com.leocai.bbscraw.CrawlerStarter().start();
-        crawlerStarter.asynStart();
-        System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
-        System.exit(0);
-
     }
 
     public JobInfoService getJobInfoService() {

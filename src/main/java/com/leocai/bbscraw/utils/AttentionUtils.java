@@ -3,14 +3,15 @@ package com.leocai.bbscraw.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Properties;
 
 /**
  * Created by caiqingliang on 2016/7/30.
+ * 关注过滤工具类
  */
 public class AttentionUtils {
 
+    private static final String withOut[] = new String[] { "是不是", "咋", "?", "？", "呢", "为什么", "求", "实习", "请问" };
     private static String attentionCompanys[];
 
     static {
@@ -26,8 +27,6 @@ public class AttentionUtils {
             e.printStackTrace();
         }
     }
-
-    private static final String withOut[] = new String[] { "是不是", "咋", "?", "？", "呢", "为什么", "求", "实习", "请问" };
 
     /**
      * 是否为关注的代码
