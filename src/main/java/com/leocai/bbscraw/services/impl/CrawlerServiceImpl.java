@@ -4,14 +4,9 @@ import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
-import com.leocai.bbscraw.services.impl.JobInfoServiceImpl;
 import com.leocai.bbscraw.utils.HtmlUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -126,7 +121,7 @@ public class CrawlerServiceImpl implements CrawlerService {
                         "com.leocai.bbscraw.crawlers." + key + "Crawler");
                 MyCrawler c = crawer.getConstructor(String.class).newInstance(properties.getProperty((String) key));
                 c.setJobInfoService(jobInfoService);
-                c.setSource((String)key);
+//                c.setSource((String)key);
                 map.put((String) key, c);
             } catch (ClassNotFoundException e) {
                 logger.error(e.getMessage(), e);
@@ -147,18 +142,16 @@ public class CrawlerServiceImpl implements CrawlerService {
 
     }
 
+    /**
+     * 从上次时间继续爬虫
+     */
     public void continueCraw() {
         Set<String> keys = map.keySet();
         for(String key:keys){
-//            String latestMd5 = jobInfoService.getLatestMd5(key);
-            Date date = jobInfoService.getLatestDateBySource(key);
             MyCrawler crawler = map.get(key);
-            crawler.continueStart(date);
-//            List<JobInfo> jobinfos = jobInfoService.getJobInfosSince(date);
+            Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
+            crawler.crawSince(date);
         }
-
-//        jobInfoService.getLatestMd5();
-
     }
 
     public void crawByDate() {

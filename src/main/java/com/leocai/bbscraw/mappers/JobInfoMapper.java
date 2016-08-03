@@ -40,4 +40,10 @@ public interface JobInfoMapper {
 
     @Select("select contentmd5 from jobinfo where source = #{source} order by jobdate desc limit 1") String getLatestMd5(
             @Param("source") String source);
+
+    @Select("select * from jobinfo where jobdate >#{date} order by jobdate desc")
+    List<JobInfo> getJobInfosSince(@Param("date") Date date);
+
+    @Select("select jobdate from jobinfo where source=#{source} order by jobdate desc limit 1")
+    Date getLatestDateBySource(@Param("source") String source);
 }

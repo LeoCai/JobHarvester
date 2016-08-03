@@ -3,6 +3,8 @@ package com.leocai.bbscraw.crawlers;
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AttentionUtils;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
@@ -27,13 +29,13 @@ public abstract class MyCrawler {
     /**
      * 页面url
      */
-    private String url;
+    private String         url;
     //TODO 爬的总页数
     private int pageNum = 50;
     /**
      * 爬虫来源
      */
-    private String source;
+    @Getter @Setter private String source;
 
     public MyCrawler(String url) {
         this.url = url;
@@ -53,30 +55,46 @@ public abstract class MyCrawler {
     /**
      * 模板模式算法
      * 粗糙定位目标位置:比如table
-     *      过滤想要和不想要的信息
-     *      定位行位置
-     *      抽取封装JobInfo信息
-     *      调用服务进行处理（此处可异步）
+     * 过滤想要和不想要的信息
+     * 定位行位置
+     * 抽取封装JobInfo信息
+     * 调用服务进行处理（此处可异步）
      * 下一页
      *
      * @return
      */
     public String start() {
+        crawSince(null);
+        return null;
+    }
+
+    /**
+     * 爬到某个日期位置
+     *
+     * @param date
+     */
+    public void crawSince(Date date) {
         init();
         driver.get(url);
-        StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < pageNum; i++) {
             List<WebElement> wes = getCuCaoTarget();
             for (WebElement we : wes) {
                 String text = we.getText();
                 if (!AttentionUtils.isAttentioned(text) || AttentionUtils.isWithOut(text)) continue;
                 JobInfo infoDTO = getInfoDTO(we);
+                if (date != null && dateEarly(infoDTO, date)) {
+                    logger.info("find date");
+                    return;
+                }
                 infoDTO.setSource(source);
                 jobInfoService.produceJobInfo(infoDTO);
             }
             nextPage();
         }
-        return sb.toString();
+    }
+
+    private boolean dateEarly(JobInfo infoDTO, Date date) {
+        return infoDTO.getJobDate().getTime() < date.getTime();
     }
 
     /**
@@ -124,11 +142,4 @@ public abstract class MyCrawler {
         this.jobInfoService = jobInfoService;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public void continueStart(Date date) {
-
-    }
 }

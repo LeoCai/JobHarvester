@@ -119,11 +119,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public Date getLatestDateBySource(String source) {
-        return null;
+        return jobInfoMapper.getLatestDateBySource(source);
     }
 
     public List<JobInfo> getJobInfosSince(Date date) {
-        return null;
+        return jobInfoMapper.getJobInfosSince(date);
     }
 
     public boolean isDBEnabled() {

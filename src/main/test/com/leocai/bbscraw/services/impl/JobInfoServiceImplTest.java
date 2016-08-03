@@ -22,6 +22,11 @@ import java.util.List;
 
     @Autowired JobInfoService jobInfoService;
 
+    @Test public void getLatestDateBySource() throws Exception {
+        Date latest = jobInfoService.getLatestDateBySource("上交bbs");
+        System.out.println(latest);
+    }
+
     @Test public void insertJobInfo() throws Exception {
         JobInfo jobInfo = new JobInfo();
         jobInfo.setTitle("阿萨");
