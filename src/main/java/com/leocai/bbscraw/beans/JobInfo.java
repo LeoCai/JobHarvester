@@ -51,7 +51,6 @@ public class JobInfo implements Serializable {
     /**
      * 根据href和title的md5码
      */
-    //TODO md5暂时未做
     private String contentMD5;
 
 }

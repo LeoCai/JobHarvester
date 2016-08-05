@@ -4,6 +4,7 @@ import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.leocai.bbscraw.utils.HtmlUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,6 +175,6 @@ import java.util.concurrent.*;
 
     //TODO 需要调整
     public boolean isDBEnabled() {
-        return JobInfoServiceImpl.DBEnabled;
+        return AppConfigUtils.isMySQLEnabled();
     }
 }

@@ -25,31 +25,29 @@ import java.util.*;
  */
 @Service public class JobInfoCacheServiceImpl implements JobInfoCacheService {
 
-    private Logger logger = Logger.getLogger(getClass());
+    public static final String JBSORTED = "jbsorted";
+    public static final String JBHASH   = "jbhash:";
+    private             Logger logger   = Logger.getLogger(getClass());
 
     @Getter @Setter @Autowired private Properties redisProperties;
     private                            Jedis      jedis;
-    private                            Field[]    fields;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
 
     @PostConstruct public void init() {
         logger.info("init");
         try {
             jedis = new Jedis(redisProperties.getProperty("url"),
                               Integer.parseInt(redisProperties.getProperty("port")));
-            System.out.println("Running" + jedis.ping());
-            fields = JobInfo.class.getDeclaredFields();
+            logger.info("redis connected");
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
     public List<JobInfo> getFromCache() {
-//        Set<String> keys = jedis.keys("*jbhash*");
-        List<JobInfo> list = new ArrayList<JobInfo>();
-        Set<String> keys = jedis.zrevrange("jbsorted", 0, -1);
+        List<JobInfo> list = new ArrayList<>();
+        Set<String> keys = jedis.zrevrange(JBSORTED, 0, -1);
         for (String key : keys) {
-            Map<String, String> map = jedis.hgetAll("jbhash:"+key);
+            Map<String, String> map = jedis.hgetAll(JBHASH + key);
             JobInfo jobInfo = JobInfoUtils.getJobInfoByMap(map);
             list.add(jobInfo);
         }
@@ -61,10 +59,9 @@ import java.util.*;
         if (jedis == null || !jedis.isConnected()) return;
         for (JobInfo jobInfo : mysqlInfo) {
             Map<String, String> map = JobInfoUtils.getMapByJobInfo(jobInfo);
-            jedis.hmset("jbhash:" + jobInfo.getId(), map);
-            jedis.zadd("jbsorted", jobInfo.getJobDate().getTime(), String.valueOf(jobInfo.getId()));
+            jedis.hmset(JBHASH + jobInfo.getId(), map);
+            jedis.zadd(JBSORTED, jobInfo.getJobDate().getTime(), String.valueOf(jobInfo.getId()));
         }
-
     }
 
     @Override public void flush() {

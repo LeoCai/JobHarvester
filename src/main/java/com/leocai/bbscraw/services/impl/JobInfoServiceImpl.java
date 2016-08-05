@@ -4,6 +4,7 @@ import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
 import com.leocai.bbscraw.services.JobInfoCacheService;
 import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,19 +26,18 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service public class JobInfoServiceImpl implements JobInfoService {
 
-    public static boolean DBEnabled = true;
-    private       Logger  logger    = Logger.getLogger(getClass());
+    private Logger logger = Logger.getLogger(getClass());
     @Autowired @Getter @Setter private JobInfoMapper       jobInfoMapper;
     @Autowired @Getter @Setter private JobInfoCacheService jobInfoCacheService;
     /**
      * 并发收集jobinfo
      */
-    private Queue<JobInfo> jobInfos         = new ConcurrentLinkedQueue<JobInfo>();
+    private Queue<JobInfo> jobInfos         = new ConcurrentLinkedQueue<>();
     /**
      * 实际包含的公司列表
      */
     //TODO 待优化，用set
-    private List<String>   avaliableComanys = new ArrayList<String>(20);
+    private Set<String>    avaliableComanys = new HashSet<>(20);
 
     public int insertJobInfo(JobInfo jobInfo) {
         int rs = -1;
@@ -89,14 +89,16 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         if (isDBEnabled()) bufferAdd(infoDTO);
         else {
             jobInfos.add(infoDTO);
-            if (!avaliableComanys.contains(infoDTO.getCompany())) {
-                avaliableComanys.add(infoDTO.getCompany());
-            }
+            avaliableComanys.add(infoDTO.getCompany());
         }
     }
 
-    public List<String> getAvalibaleComanys() {
-        if (isDBEnabled()) return getCompanys();
+    public Set<String> getAvalibaleComanys() {
+        if (isDBEnabled()) {
+            List<String> list = getCompanys();
+            avaliableComanys.clear();
+            avaliableComanys.addAll(list);
+        }
         return avaliableComanys;
     }
 
@@ -111,7 +113,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
                 cacheSize = cachedInfoList.size();
             }
         }
-
         List<JobInfo> mysqlInfo;
         if (maxCacheDate == null) mysqlInfo = jobInfoMapper.getJobInfos();
         else mysqlInfo = jobInfoMapper.getJobInfosSince(maxCacheDate);
@@ -151,7 +152,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public boolean isDBEnabled() {
-        return DBEnabled;
+        return AppConfigUtils.isMySQLEnabled();
     }
 
 }

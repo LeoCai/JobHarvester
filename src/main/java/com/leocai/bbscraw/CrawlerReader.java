@@ -26,7 +26,7 @@ import java.util.List;
 
     public void start() {
         long start = System.nanoTime();
-        List<JobInfo> jobInfoList = jobInfoService.getJobInfos(false);
+        List<JobInfo> jobInfoList = jobInfoService.getJobInfos(true);
         System.out.println((System.nanoTime() - start) / 1000000);
 //        for (JobInfo jobInfo : jobInfoList) {
 //            System.out.println(jobInfo.getJobDate().getTime());

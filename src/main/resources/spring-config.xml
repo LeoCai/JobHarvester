@@ -17,6 +17,7 @@
 
     <util:properties id="schoolSettings" location="classpath:school.properties"/>
     <util:properties id="redisProperties" location="classpath:/config/redis.properties"/>
+    <util:properties id="appProperties" location="classpath:/config/app.properties"/>
 
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

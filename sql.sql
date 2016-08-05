@@ -12,14 +12,16 @@ CREATE TABLE IF NOT EXISTS jobinfo(id INT PRIMARY KEY AUTO_INCREMENT,
  source CHAR(20) NOT NULL DEFAULT '无',
  INDEX index_md5(contentmd5),
  INDEX index_jobdate(jobdate)
+
  );
- EXPLAIN SELECT * FROM jobinfo ORDER BY jobdate DESC LIMIT 10;
  
- DROP TABLE  IF EXISTS jobinfo
- SHOW VARIABLES LIKE 'char%'
+SELECT * FROM jobinfo JOIN (SELECT jobdate FROM jobinfo ORDER BY jobdate) b ON jobinfo.jobdate = b.jobdate;
+
+DROP TABLE  IF EXISTS jobinfo
+
+SHOW VARIABLES LIKE 'char%'
  
- 
- INSERT INTO jobinfo(title,jobdate) VALUES('水电费','2016-07-01');
+INSERT INTO jobinfo(title,jobdate) VALUES('水电费','2016-07-01');
 
 EXPLAIN SELECT COUNT(*) FROM jobinfo
 
@@ -27,4 +29,11 @@ SELECT MD5('asdas');
 
 EXPLAIN SELECT contentmd5 FROM jobinfo WHERE source = '南大bbs' ORDER BY jobdate DESC LIMIT 1
 
+SELECT * FROM jobinfo ORDER BY jobdate DESC
+
+SET profiling = 1
+
+SHOW PROFILES
+
+SELECT COUNT(*) FROM jobinfo
  

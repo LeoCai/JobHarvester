@@ -4,6 +4,7 @@ import com.leocai.bbscraw.beans.JobInfo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by caiqingliang on 2016/7/29.
@@ -39,18 +40,21 @@ public interface JobInfoService {
 
     /**
      * 产生一个JobInfo，进行处理
+     *
      * @param infoDTO
      */
     void produceJobInfo(JobInfo infoDTO);
 
     /**
      * 获取当前存在的公司
+     *
      * @return
      */
-    List<String> getAvalibaleComanys();
+    Set<String> getAvalibaleComanys();
 
     /**
-     * 从数据库中获取jobInfo
+     *
+     * @param useCache
      * @return
      */
     List<JobInfo> getJobInfos(boolean useCache);
@@ -62,6 +66,7 @@ public interface JobInfoService {
 
     /**
      * 从数据库中获取当前存在的公司
+     *
      * @return
      */
     List<String> getCompanys();
@@ -76,6 +81,7 @@ public interface JobInfoService {
 
     /**
      * 根据source获取数据库中最近的日期
+     *
      * @param source
      * @return
      */
@@ -83,6 +89,7 @@ public interface JobInfoService {
 
     /**
      * 从某个日期开始到现在
+     *
      * @param date
      * @return
      */

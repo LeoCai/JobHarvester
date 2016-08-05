@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by caiqingliang on 2016/7/30.
@@ -57,7 +58,7 @@ public class HtmlUtils {
         return "<td><a href='" + href + "'>" + info + "</a></td>";
     }
 
-    public static String getRealComanyListInfo(List<String> avalibaleComanys) {
+    public static String getRealComanyListInfo(Set<String> avalibaleComanys) {
         StringBuffer sb = new StringBuffer();
         sb.append("<select>");
         for (String company : avalibaleComanys) {
