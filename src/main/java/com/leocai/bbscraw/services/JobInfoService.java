@@ -53,7 +53,7 @@ public interface JobInfoService {
      * 从数据库中获取jobInfo
      * @return
      */
-    List<JobInfo> getJobInfos();
+    List<JobInfo> getJobInfos(boolean useCache);
 
     /**
      * 重建jobinfo表
@@ -87,4 +87,6 @@ public interface JobInfoService {
      * @return
      */
     List<JobInfo> getJobInfosSince(Date date);
+
+    void dropTableIfExits();
 }

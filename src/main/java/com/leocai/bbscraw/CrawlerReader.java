@@ -22,11 +22,15 @@ import java.util.List;
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
         CrawlerReader crawlerReader = applicationContext.getBean("crawlerReader", CrawlerReader.class);
         crawlerReader.start();
-
     }
 
     public void start() {
-        List<JobInfo> jobInfoList = jobInfoService.getJobInfos();
+        long start = System.nanoTime();
+        List<JobInfo> jobInfoList = jobInfoService.getJobInfos(false);
+        System.out.println((System.nanoTime() - start) / 1000000);
+//        for (JobInfo jobInfo : jobInfoList) {
+//            System.out.println(jobInfo.getJobDate().getTime());
+//        }
         HtmlUtils.writeHtml(jobInfoList, jobInfoService);
     }
 

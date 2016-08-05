@@ -15,6 +15,8 @@ public interface JobInfoMapper {
 
     //TODO company 单独建表
     //TODO source 单独建表
+    //TODO sql 放到XML文件中
+
 
     //CREATE DATABASE jobharvest  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 

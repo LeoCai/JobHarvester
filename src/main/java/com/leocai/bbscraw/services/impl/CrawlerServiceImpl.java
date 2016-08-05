@@ -20,28 +20,30 @@ import java.util.concurrent.*;
  * 并行
  * StringBuffer
  */
-@Service
-public class CrawlerServiceImpl implements CrawlerService {
+@Service public class CrawlerServiceImpl implements CrawlerService {
 
     private Logger logger = Logger.getLogger(getClass());
+
+    @Autowired private Properties schoolSettings;
 
     /**
      * 用于存放各个爬虫类
      */
     private HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
 
-    @Autowired private JobInfoService jobInfoService;
+    @Autowired private JobInfoService  jobInfoService;
+    private            ExecutorService executorService;
 
-//    public static void main(String args[]) {
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
-//        CrawlerService crawlerService = applicationContext.getBean("crawlerServiceImpl", CrawlerService.class);
-//        long start = System.nanoTime();
-//        //        new com.leocai.bbscraw.CrawlerStarter().start();
-//        crawlerService.crawByPage();
-//        System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
-//        System.exit(0);
-//
-//    }
+    //    public static void main(String args[]) {
+    //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+    //        CrawlerService crawlerService = applicationContext.getBean("crawlerServiceImpl", CrawlerService.class);
+    //        long start = System.nanoTime();
+    //        //        new com.leocai.bbscraw.CrawlerStarter().start();
+    //        crawlerService.crawByPage();
+    //        System.out.println((System.nanoTime() - start) * 1.0 / 1000000000);
+    //        System.exit(0);
+    //
+    //    }
 
     /**
      * 使用类加载器加载各个爬虫类
@@ -50,13 +52,66 @@ public class CrawlerServiceImpl implements CrawlerService {
      */
     @PostConstruct public void init() {
         loadCrawlers();
+        executorService = Executors.newFixedThreadPool(5);
     }
 
-    public void start() {
-        Set<String> set = map.keySet();
-        for (String key : set) {
-            MyCrawler crawer = map.get(key);
-            crawer.start();
+    /**
+     * 类加载器加载爬虫类放到map中
+     */
+    //TODO properties 使用工厂模式
+    public void loadCrawlers() {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        Set<Object> keys = schoolSettings.keySet();
+        for (Object key : keys) {
+            try {
+                Class<MyCrawler> crawer = (Class<MyCrawler>) classLoader.loadClass(
+                        "com.leocai.bbscraw.crawlers." + key + "Crawler");
+                MyCrawler c = crawer.getConstructor(String.class).newInstance(schoolSettings.getProperty((String) key));
+                c.setJobInfoService(jobInfoService);
+                //                c.setSource((String)key);
+                map.put((String) key, c);
+            } catch (ClassNotFoundException e) {
+                logger.error(e.getMessage(), e);
+            } catch (InstantiationException e) {
+                logger.error(e.getMessage(), e);
+            } catch (IllegalAccessException e) {
+                logger.error(e.getMessage(), e);
+            } catch (NoSuchMethodException e) {
+                logger.error(e.getMessage(), e);
+            } catch (InvocationTargetException e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    /**
+     * 从上次时间继续爬虫
+     */
+    public void continueCraw() {
+        Set<String> keys = map.keySet();
+        List<Future<String>> fts = new ArrayList<>(keys.size());
+        for (final String key : keys) {
+            Future<String> ft = executorService.submit(new Callable<String>() {
+                public String call() throws Exception {
+                    MyCrawler crawler = map.get(key);
+                    Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
+                    crawler.crawSince(date);
+                    map.get(key).close();
+                    return null;
+                }
+            });
+            fts.add(ft);
+        }
+        for (Future<String> f : fts) {
+            try {
+                f.get();
+            } catch (InterruptedException | ExecutionException e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+        if (!isDBEnabled()) {
+            List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
+            HtmlUtils.writeHtml(jobInfoList, jobInfoService);
         }
     }
 
@@ -67,9 +122,8 @@ public class CrawlerServiceImpl implements CrawlerService {
      */
     //TODO 是否可以多个标签页并行
     public void asynStart() {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
         Set<String> set = map.keySet();
-        List<Future<String>> fts = new ArrayList<Future<String>>(5);
+        List<Future<String>> fts = new ArrayList<>(set.size());
         for (final String key : set) {
             Future<String> ft = executorService.submit(new Callable<String>() {
 
@@ -84,9 +138,7 @@ public class CrawlerServiceImpl implements CrawlerService {
         for (Future<String> f : fts) {
             try {
                 f.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -96,65 +148,7 @@ public class CrawlerServiceImpl implements CrawlerService {
         }
     }
 
-    //TODO 需要调整
-    public boolean isDBEnabled() {
-        return JobInfoServiceImpl.DBEnabled;
-    }
-
-    /**
-     * 类加载器加载爬虫类放到map中
-     */
-    //TODO properties 使用工厂模式
-    public void loadCrawlers() {
-        Properties properties = new Properties();
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        try {
-            properties.load(classLoader.getResourceAsStream("school.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Set<Object> keys = properties.keySet();
-        for (Object key : keys) {
-            try {
-                Class<MyCrawler> crawer = (Class<MyCrawler>) classLoader.loadClass(
-                        "com.leocai.bbscraw.crawlers." + key + "Crawler");
-                MyCrawler c = crawer.getConstructor(String.class).newInstance(properties.getProperty((String) key));
-                c.setJobInfoService(jobInfoService);
-//                c.setSource((String)key);
-                map.put((String) key, c);
-            } catch (ClassNotFoundException e) {
-                logger.error(e.getMessage(), e);
-            } catch (InstantiationException e) {
-                logger.error(e.getMessage(), e);
-            } catch (IllegalAccessException e) {
-                logger.error(e.getMessage(), e);
-            } catch (NoSuchMethodException e) {
-                logger.error(e.getMessage(), e);
-            } catch (InvocationTargetException e) {
-                logger.error(e.getMessage(), e);
-            }
-            properties.get(key);
-        }
-    }
-
     public void crawlerToday() {
-
-    }
-
-    /**
-     * 从上次时间继续爬虫
-     */
-    public void continueCraw() {
-        Set<String> keys = map.keySet();
-        for(String key:keys){
-            MyCrawler crawler = map.get(key);
-            Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
-            crawler.crawSince(date);
-        }
-    }
-
-    public void crawByDate() {
 
     }
 
@@ -164,5 +158,22 @@ public class CrawlerServiceImpl implements CrawlerService {
 
     public void close() {
 
+    }
+
+    public void crawByDate() {
+
+    }
+
+    public void start() {
+        Set<String> set = map.keySet();
+        for (String key : set) {
+            MyCrawler crawer = map.get(key);
+            crawer.start();
+        }
+    }
+
+    //TODO 需要调整
+    public boolean isDBEnabled() {
+        return JobInfoServiceImpl.DBEnabled;
     }
 }

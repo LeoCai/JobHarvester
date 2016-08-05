@@ -2,6 +2,7 @@ package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
+import com.leocai.bbscraw.services.JobInfoCacheService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
@@ -25,7 +27,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     public static boolean DBEnabled = true;
     private       Logger  logger    = Logger.getLogger(getClass());
-    @Autowired @Getter @Setter private JobInfoMapper jobInfoMapper;
+    @Autowired @Getter @Setter private JobInfoMapper       jobInfoMapper;
+    @Autowired @Getter @Setter private JobInfoCacheService jobInfoCacheService;
     /**
      * 并发收集jobinfo
      */
@@ -41,14 +44,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         try {
             rs = jobInfoMapper.insertJobInfo(jobInfo);
         } catch (Exception e) {
-            if (!(e instanceof MySQLIntegrityConstraintViolationException)) logger.error(e.getMessage(), e);
-            else logger.info(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
         return rs;
     }
 
     public List<JobInfo> getJobInfosFromMemory() {
-        List<JobInfo> jiList = new ArrayList<JobInfo>(jobInfos.size());
+        List<JobInfo> jiList = new ArrayList<>(jobInfos.size());
         for (JobInfo ji : jobInfos) {
             jiList.add(ji);
         }
@@ -98,8 +100,26 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         return avaliableComanys;
     }
 
-    public List<JobInfo> getJobInfos() {
-        return jobInfoMapper.getJobInfos();
+    public List<JobInfo> getJobInfos(boolean useCache) {
+        List<JobInfo> cachedInfoList = new ArrayList<>();
+        int cacheSize = 0;
+        Date maxCacheDate = null;
+        if (useCache) {
+            cachedInfoList = jobInfoCacheService.getFromCache();
+            if (!CollectionUtils.isEmpty(cachedInfoList)) {
+                maxCacheDate = cachedInfoList.get(0).getJobDate();
+                cacheSize = cachedInfoList.size();
+            }
+        }
+
+        List<JobInfo> mysqlInfo;
+        if (maxCacheDate == null) mysqlInfo = jobInfoMapper.getJobInfos();
+        else mysqlInfo = jobInfoMapper.getJobInfosSince(maxCacheDate);
+        List<JobInfo> list = new ArrayList<>(cacheSize + mysqlInfo.size());
+        list.addAll(cachedInfoList);
+        list.addAll(mysqlInfo);
+        jobInfoCacheService.addCache(mysqlInfo);
+        return list;
     }
 
     @PostConstruct public void createTableIfNotExits() {
@@ -124,6 +144,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     public List<JobInfo> getJobInfosSince(Date date) {
         return jobInfoMapper.getJobInfosSince(date);
+    }
+
+    @Override public void dropTableIfExits() {
+        jobInfoMapper.dropTableIfExists();
     }
 
     public boolean isDBEnabled() {

@@ -11,7 +11,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -238,7 +238,9 @@
           <root url="jar://$MODULE_DIR$/libs/jedis-2.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ideaLibSources/jedis-2.1.0-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.16.10" level="project" />

@@ -40,13 +40,13 @@ public class NYUCrawler extends MyCrawler {
                     try {
                         date = sdf.parse(dateStr);
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage(), e);
                     }
                 } else {
                     try {
                         date = sdf2.parse(JobDateUtils.getTodayDateStr() + " " + dateStr);
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage(), e);
                     }
                 }
                 return date;
@@ -63,13 +63,5 @@ public class NYUCrawler extends MyCrawler {
         WebElement el = driver.findElement(By.linkText(">>"));
         el.click();
     }
-
-    //    public static void main(String args[]) {
-    ////                new com.leocai.bbscraw.crawlers.NYUCrawler("http://bbs.cloud.icybee.cn/board/Job").start();
-    ////        new com.leocai.bbscraw.crawlers.NJUCrawler("http://bbs.nju.edu.cn/board?board=JobExpress").start();
-    //        new com.leocai.bbscraw.crawlers.SJUCrawler("https://bbs.sjtu.edu.cn/bbsdoc?board=JobInfo").start();
-    //
-    //
-    //    }
 
 }

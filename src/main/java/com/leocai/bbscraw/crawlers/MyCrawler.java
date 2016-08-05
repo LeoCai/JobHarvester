@@ -24,12 +24,12 @@ public abstract class MyCrawler {
 
     protected Logger logger      = Logger.getLogger(getClass());
     protected int    currentPage = 1;
-    WebDriver driver;
-    private JobInfoService jobInfoService;
+    protected WebDriver      driver;
+    private   JobInfoService jobInfoService;
     /**
      * 页面url
      */
-    private String         url;
+    private   String         url;
     //TODO 爬的总页数
     private int pageNum = 50;
     /**

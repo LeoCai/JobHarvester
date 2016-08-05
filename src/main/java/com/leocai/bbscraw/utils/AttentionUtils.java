@@ -11,7 +11,13 @@ import java.util.Properties;
  */
 public class AttentionUtils {
 
-    private static final String withOut[] = new String[] { "是不是", "咋", "?", "？", "呢", "为什么", "求", "实习", "请问" };
+    /**
+     * 过滤的字符串
+     */
+    private static String withOut[];
+    /**
+     * 关注的公司
+     */
     private static String attentionCompanys[];
 
     static {
@@ -20,10 +26,11 @@ public class AttentionUtils {
         try {
             properties.load(new InputStreamReader(in, "UTF-8"));
             String list = (String) properties.get("list");
-            String[] l = list.split(",");
-            attentionCompanys = l;
+            attentionCompanys = list.split(",");
+            withOut = ((String) properties.get("without")).split(",");
         } catch (IOException e) {
             attentionCompanys = new String[] {};
+            withOut = new String[] {};
             e.printStackTrace();
         }
     }

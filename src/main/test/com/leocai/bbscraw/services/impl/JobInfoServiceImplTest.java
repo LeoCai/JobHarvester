@@ -18,6 +18,16 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class JobInfoServiceImplTest
         extends AbstractJUnit4SpringContextTests {
 
+    @Test public void dropTableIfExits() throws Exception {
+        jobInfoService.dropTableIfExits();
+    }
+
+    @Test public void getJobInfos() throws Exception {
+        List<JobInfo> jobInfos = jobInfoService.getJobInfos(false);
+        System.out.println(jobInfos.toString());
+
+    }
+
     @Autowired CrawlerServiceImpl crawlerServiceImpl;
 
     @Autowired JobInfoService jobInfoService;
