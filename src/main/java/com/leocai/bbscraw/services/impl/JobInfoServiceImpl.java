@@ -1,6 +1,7 @@
 package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.comparators.HotComparator;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
 import com.leocai.bbscraw.services.JobInfoCacheService;
 import com.leocai.bbscraw.services.JobInfoService;
@@ -54,12 +55,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         for (JobInfo ji : jobInfos) {
             jiList.add(ji);
         }
-        Collections.sort(jiList, new Comparator<JobInfo>() {
-
-            public int compare(JobInfo o1, JobInfo o2) {
-                return o1.getJobDate().getTime() > o2.getJobDate().getTime() ? -1 : 1;
-            }
-        });
+        Collections.sort(jiList, new HotComparator());
         return jiList;
     }
 
@@ -152,7 +148,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public boolean isDBEnabled() {
-        return AppConfigUtils.isMySQLEnabled();
+        return AppConfigUtils.isMysqlEnabled();
     }
 
 }

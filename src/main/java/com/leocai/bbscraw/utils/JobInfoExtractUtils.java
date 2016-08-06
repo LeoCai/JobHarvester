@@ -31,7 +31,6 @@ public class JobInfoExtractUtils {
         String href = we.findElements(By.tagName("a")).get(jobInfoIndex.getHrefIdnex()).getAttribute("href");
         String timeStr = we.findElements(By.tagName("td")).get(jobInfoIndex.getTimeIndex()).getText();
         String title = we.findElements(By.tagName("td")).get(jobInfoIndex.getTitleIndex()).getText();
-        String comany = AttentionUtils.findComany(title);
         Date time;
         time = jobDateParser.parse(timeStr);
         int hot = 0;
@@ -44,7 +43,6 @@ public class JobInfoExtractUtils {
         jobInfo.setJobDate(time);
         jobInfo.setTitle(title);
         jobInfo.setHot(hot);
-        jobInfo.setCompany(comany);
         return jobInfo;
     }
 }

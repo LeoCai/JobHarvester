@@ -18,15 +18,15 @@ import static org.junit.Assert.*;
     @Autowired AppConfigUtils appConfigUtils;
 
     @Test public void isDebug() throws Exception {
-        assertEquals(true, AppConfigUtils.isMySQLEnabled());
+        assertEquals(true, AppConfigUtils.isMysqlEnabled());
     }
 
     @Test public void isMySQLEnabled() throws Exception {
-        assertEquals(true, AppConfigUtils.isMySQLEnabled());
+        assertEquals(true, AppConfigUtils.isMysqlEnabled());
     }
 
     @Test public void isRedisEnabled() throws Exception {
-        assertEquals(true, AppConfigUtils.isMySQLEnabled());
+        assertEquals(true, AppConfigUtils.isMysqlEnabled());
     }
 
 }

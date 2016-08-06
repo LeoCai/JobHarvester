@@ -1,7 +1,9 @@
 package com.leocai.bbscraw.crawlers;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.filters.AttentionFilters;
 import com.leocai.bbscraw.services.JobInfoService;
+import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.leocai.bbscraw.utils.AttentionUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,14 +26,15 @@ public abstract class MyCrawler {
 
     protected Logger logger      = Logger.getLogger(getClass());
     protected int    currentPage = 1;
-    protected WebDriver      driver;
-    private   JobInfoService jobInfoService;
+    protected               WebDriver        driver;
+    @Getter @Setter private JobInfoService   jobInfoService;
+    @Getter @Setter private AttentionFilters attentionFilters;
     /**
      * 页面url
      */
-    private   String         url;
+    private                 String           url;
     //TODO 爬的总页数
-    private int pageNum = 50;
+    private int pageNum = 3;
     /**
      * 爬虫来源
      */
@@ -49,7 +52,8 @@ public abstract class MyCrawler {
         profile.setPreference("permissions.default.stylesheet", 2);
         profile.setPreference("permissions.default.image", 2);
         driver = new FirefoxDriver(profile);
-        driver.manage().window().setPosition(new Point(-2000, 0));
+        pageNum = AppConfigUtils.getCrawMaxNum();
+        //        driver.manage().window().setPosition(new Point(-2000, 0));
     }
 
     /**
@@ -80,13 +84,15 @@ public abstract class MyCrawler {
             List<WebElement> wes = getCuCaoTarget();
             for (WebElement we : wes) {
                 String text = we.getText();
-                if (!AttentionUtils.isAttentioned(text) || AttentionUtils.isWithOut(text)) continue;
+                if (!attentionFilters.isAttention(text) || attentionFilters.isIgnored(text)) continue;
                 JobInfo infoDTO = getInfoDTO(we);
+                infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
                 if (date != null && dateEarly(infoDTO, date)) {
                     logger.info("find date");
                     return;
                 }
                 infoDTO.setSource(source);
+                if(attentionFilters.filted(infoDTO)) continue;
                 jobInfoService.produceJobInfo(infoDTO);
             }
             nextPage();
@@ -124,22 +130,6 @@ public abstract class MyCrawler {
 
     public void close() {
         driver.close();
-    }
-
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public JobInfoService getJobInfoService() {
-        return jobInfoService;
-    }
-
-    public void setJobInfoService(JobInfoService jobInfoService) {
-        this.jobInfoService = jobInfoService;
     }
 
 }

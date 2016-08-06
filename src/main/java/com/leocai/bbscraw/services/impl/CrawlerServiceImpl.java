@@ -2,6 +2,8 @@ package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
+import com.leocai.bbscraw.filters.AttentionFilters;
+import com.leocai.bbscraw.filters.FaceExperienceFilters;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
@@ -32,8 +34,9 @@ import java.util.concurrent.*;
      */
     private HashMap<String, MyCrawler> map = new HashMap<String, MyCrawler>();
 
-    @Autowired private JobInfoService  jobInfoService;
-    private            ExecutorService executorService;
+    @Autowired private JobInfoService        jobInfoService;
+    private            ExecutorService       executorService;
+    @Autowired private FaceExperienceFilters faceExperienceFilters;
 
     //    public static void main(String args[]) {
     //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
@@ -69,6 +72,8 @@ import java.util.concurrent.*;
                         "com.leocai.bbscraw.crawlers." + key + "Crawler");
                 MyCrawler c = crawer.getConstructor(String.class).newInstance(schoolSettings.getProperty((String) key));
                 c.setJobInfoService(jobInfoService);
+                c.setAttentionFilters(faceExperienceFilters);
+                //                c.setAttentionFilters();
                 //                c.setSource((String)key);
                 map.put((String) key, c);
             } catch (ClassNotFoundException e) {
@@ -93,6 +98,7 @@ import java.util.concurrent.*;
         List<Future<String>> fts = new ArrayList<>(keys.size());
         for (final String key : keys) {
             Future<String> ft = executorService.submit(new Callable<String>() {
+
                 public String call() throws Exception {
                     MyCrawler crawler = map.get(key);
                     Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
@@ -175,6 +181,6 @@ import java.util.concurrent.*;
 
     //TODO 需要调整
     public boolean isDBEnabled() {
-        return AppConfigUtils.isMySQLEnabled();
+        return AppConfigUtils.isMysqlEnabled();
     }
 }

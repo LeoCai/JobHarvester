@@ -21,13 +21,14 @@ public class AttentionUtils {
     private static String attentionCompanys[];
 
     static {
-        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("attention.properties");
+        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                "config/job-attention.properties");
         Properties properties = new Properties();
         try {
             properties.load(new InputStreamReader(in, "UTF-8"));
-            String list = (String) properties.get("list");
+            String list = ((String) properties.get("list")).trim();
             attentionCompanys = list.split(",");
-            withOut = ((String) properties.get("without")).split(",");
+            withOut = ((String) properties.get("without")).trim().split(",");
         } catch (IOException e) {
             attentionCompanys = new String[] {};
             withOut = new String[] {};

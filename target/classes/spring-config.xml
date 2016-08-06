@@ -18,6 +18,8 @@
     <util:properties id="schoolSettings" location="classpath:school.properties"/>
     <util:properties id="redisProperties" location="classpath:/config/redis.properties"/>
     <util:properties id="appProperties" location="classpath:/config/app.properties"/>
+    <util:properties id="jobAttentionProp" location="classpath:/config/job-attention.properties"/>
+    <util:properties id="expAttentionProp" location="classpath:/config/exp-attention.properties"/>
 
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
