@@ -5,6 +5,7 @@ import com.leocai.bbscraw.filters.AttentionFilters;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.leocai.bbscraw.utils.AttentionUtils;
+import com.leocai.bbscraw.utils.ProfileUtils;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.log4j.Logger;
@@ -78,9 +79,11 @@ public abstract class MyCrawler {
      * @param date
      */
     public void crawSince(Date date) {
+        ProfileUtils.start(getClass().getSimpleName() + ".crawSince");
         init();
         driver.get(url);
         for (int i = 0; i < pageNum; i++) {
+            ProfileUtils.start(getClass().getSimpleName() + ".crawOnePage");
             List<WebElement> wes = getCuCaoTarget();
             for (WebElement we : wes) {
                 String text = we.getText();
@@ -92,11 +95,15 @@ public abstract class MyCrawler {
                     return;
                 }
                 infoDTO.setSource(source);
-                if(attentionFilters.filted(infoDTO)) continue;
+                if (attentionFilters.filted(infoDTO)) continue;
                 jobInfoService.produceJobInfo(infoDTO);
             }
+            ProfileUtils.end(getClass().getSimpleName() + ".crawOnePage");
+            ProfileUtils.start(getClass().getSimpleName() + ".nextPage");
             nextPage();
+            ProfileUtils.end(getClass().getSimpleName() + ".nextPage");
         }
+        ProfileUtils.end(getClass().getSimpleName() + ".crawSince");
     }
 
     private boolean dateEarly(JobInfo infoDTO, Date date) {

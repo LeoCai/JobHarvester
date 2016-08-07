@@ -83,6 +83,19 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
         <!-- mybatis核心包 -->
         <dependency>
             <groupId>org.mybatis</groupId>

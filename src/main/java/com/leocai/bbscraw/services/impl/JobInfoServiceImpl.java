@@ -2,10 +2,12 @@ package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.comparators.HotComparator;
+import com.leocai.bbscraw.comparators.TimeComparator;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
 import com.leocai.bbscraw.services.JobInfoCacheService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
+import com.leocai.bbscraw.utils.ProfileUtils;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,11 +43,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     private Set<String>    avaliableComanys = new HashSet<>(20);
 
     public int insertJobInfo(JobInfo jobInfo) {
-        int rs = -1;
+        int rs = 1;
         try {
-            rs = jobInfoMapper.insertJobInfo(jobInfo);
+            jobInfoMapper.insertJobInfo(jobInfo);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+            return -1;
         }
         return rs;
     }
@@ -55,7 +58,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         for (JobInfo ji : jobInfos) {
             jiList.add(ji);
         }
-        Collections.sort(jiList, new HotComparator());
+        Collections.sort(jiList, new TimeComparator());
         return jiList;
     }
 
@@ -102,6 +105,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         List<JobInfo> cachedInfoList = new ArrayList<>();
         int cacheSize = 0;
         Date maxCacheDate = null;
+        ProfileUtils.start("getFromCache");
         if (useCache) {
             cachedInfoList = jobInfoCacheService.getFromCache();
             if (!CollectionUtils.isEmpty(cachedInfoList)) {
@@ -109,9 +113,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
                 cacheSize = cachedInfoList.size();
             }
         }
+        ProfileUtils.end("getFromCache");
         List<JobInfo> mysqlInfo;
+        ProfileUtils.start("getJobInfosMysql");
         if (maxCacheDate == null) mysqlInfo = jobInfoMapper.getJobInfos();
         else mysqlInfo = jobInfoMapper.getJobInfosSince(maxCacheDate);
+        ProfileUtils.end("getJobInfosMysql");
         List<JobInfo> list = new ArrayList<>(cacheSize + mysqlInfo.size());
         list.addAll(cachedInfoList);
         list.addAll(mysqlInfo);
@@ -120,6 +127,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     @PostConstruct public void createTableIfNotExits() {
+        if (AppConfigUtils.isMysqlDropTable()) dropTableIfExits();
         try {
             jobInfoMapper.createTableIfNotExits();
         } catch (Exception e) {
@@ -136,6 +144,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public Date getLatestDateBySource(String source) {
+        if (!AppConfigUtils.isMysqlEnabled()) return null;
         return jobInfoMapper.getLatestDateBySource(source);
     }
 

@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="bbsClaw:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cc4197f4-a482-4b27-b825-6c619e175652" name="Default" comment="重构入口">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/HotComparator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/TimeComparator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NowcoderCrawler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/AttentionFilters.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/FaceExperienceFilters.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/JobInfoFilters.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/job-attention.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/bbsClaw_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_6_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_6_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/advice/TimeAdvice.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/ProfileUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/jobcrawler-config.properties" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/attention.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/school.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbsClaw.iml" afterPath="$PROJECT_DIR$/bbsClaw.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobInfo.html" afterPath="$PROJECT_DIR$/jobInfo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AttentionUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AttentionUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobInfoExtractUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobInfoExtractUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/app.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/app.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/school.properties" afterPath="$PROJECT_DIR$/src/main/resources/school.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-config.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/utils/AppConfigUtilsTest.java" afterPath="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/utils/AppConfigUtilsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/attention.properties" afterPath="$PROJECT_DIR$/target/classes/attention.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java" afterPath="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/config/app.properties" afterPath="$PROJECT_DIR$/target/classes/config/app.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/school.properties" afterPath="$PROJECT_DIR$/target/classes/school.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-config.xml" afterPath="$PROJECT_DIR$/target/classes/spring-config.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/attention.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/exp-attention.properties" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/school.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/expcrawler-config.properties" />
     </list>
     <ignored path="bbsClaw.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,83 +69,96 @@
       <file leaf-file-name="JobInfoServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="156">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4339#4340#0" expanded="true" />
-                <element signature="e#4389#4390#0" expanded="true" />
-                <element signature="e#4865#4866#0" expanded="true" />
-                <element signature="e#4919#4920#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spring-config.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProfileUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/ProfileUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+                <element signature="e#433#434#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-config.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/spring-config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+            <state relative-caret-position="177">
+              <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.properties">
+      <file leaf-file-name="TimeAdvice.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/advice/TimeAdvice.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="329">
+              <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobInfoMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HotComparator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/HotComparator.java">
+      <file leaf-file-name="CrawlerWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="e#259#260#0" expanded="true" />
-                <element signature="e#307#308#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeComparator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/TimeComparator.java">
+      <file leaf-file-name="jobcrawler-config.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/jobcrawler-config.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="92">
+              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FaceExperienceFilters.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/FaceExperienceFilters.java">
+      <file leaf-file-name="Pointcut.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.11/aspectjrt-1.6.11.jar!/org/aspectj/lang/annotation/Pointcut.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1314#1315#0" expanded="true" />
-                <element signature="e#1359#1360#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppConfigUtilsTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/utils/AppConfigUtilsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+            <state relative-caret-position="184">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -148,36 +167,9 @@
       <file leaf-file-name="MyCrawler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="92" column="17" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-              <folding>
-                <element signature="e#3267#3268#0" expanded="true" />
-                <element signature="e#3327#3328#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttentionFilters.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/AttentionFilters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="163">
+              <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobInfoFilters.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/JobInfoFilters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="42" column="20" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1306#1307#0" expanded="true" />
-                <element signature="e#1334#1335#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -210,9 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/HtmlUtis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCS.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCSCraler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCSCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/SJUCrawler.java" />
@@ -220,47 +209,50 @@
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawerReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobDateParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobDateUtils.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/beans/JobInfoIndex.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/CrawlerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerStarter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/CrawlerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/redis.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobInfoUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoCacheService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NYUCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/services/impl/JobInfoServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/RedisTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/beans/JobInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/HtmlUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NowcoderCrawler.java" />
-        <option value="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/JobInfoExtractUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NOWCODERCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AttentionUtils.java" />
         <option value="$PROJECT_DIR$/src/main/resources/attention.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-config.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/config/exp-attention.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/utils/AppConfigUtilsTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/school.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/AttentionFilters.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/FaceExperienceFilters.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/JobInfoFilters.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/TimeComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/comparators/HotComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/ProfileUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/jobcrawler-config.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-config.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/config/app.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/advice/TimeAdvice.java" />
       </list>
     </option>
   </component>
@@ -301,31 +293,14 @@
           <option name="myItemId" value="bbsClaw" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Dependencies" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="commons-fileupload:commons-fileupload:1.3.1" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="bbsClaw" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
       </PATH>
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="800" />
-    <option name="width" value="800" />
-    <option name="height" value="860" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -637,6 +612,44 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbscraw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbscraw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -730,7 +743,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bbscraw" />
+              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -759,10 +772,6 @@
               <option name="myItemId" value="bbscraw" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comparators" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -773,10 +782,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.48735633" />
+    <property name="project.structure.side.proportion" value="0.1816092" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-framework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl" />
@@ -800,11 +809,11 @@
       <recent name="F:\test\bbsClaw\src\main\resources" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\test\bbsClaw\src\main\resources\config" />
       <recent name="F:\test\bbsClaw\src\main\resources" />
       <recent name="F:\test\bbsClaw\libs" />
       <recent name="F:\test\bbsClaw\test\src\com\leocai\test\core" />
       <recent name="F:\test\bbsClaw\target\classes\libs" />
-      <recent name="F:\test\bbsClaw\target\classes" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.leocai.bbscraw.comparators" />
@@ -855,58 +864,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="AppConfigUtilsTest.isDebug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.leocai.bbscraw.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="bbsClaw" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.leocai.bbscraw.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.leocai.bbscraw.utils.AppConfigUtilsTest" />
-      <option name="METHOD_NAME" value="isDebug" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="AppConfigUtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.leocai.bbscraw.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="bbsClaw" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.leocai.bbscraw.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.leocai.bbscraw.utils.AppConfigUtilsTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="NOWCODERCrawlerTest.getCuCaoTarget" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -920,6 +877,58 @@
       <option name="PACKAGE_NAME" value="com.leocai.bbscraw.crawlers" />
       <option name="MAIN_CLASS_NAME" value="com.leocai.bbscraw.crawlers.NOWCODERCrawlerTest" />
       <option name="METHOD_NAME" value="getCuCaoTarget" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="JobInfoCacheServiceImplTest.flush" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.leocai.bbscraw.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bbsClaw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.leocai.bbscraw.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.leocai.bbscraw.services.impl.JobInfoCacheServiceImplTest" />
+      <option name="METHOD_NAME" value="flush" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="JobInfoServiceImplTest.dropTableIfExits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.leocai.bbscraw.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bbsClaw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.leocai.bbscraw.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.leocai.bbscraw.services.impl.JobInfoServiceImplTest" />
+      <option name="METHOD_NAME" value="dropTableIfExits" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1359,17 +1368,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.CrawlerWriter" />
       <item index="1" class="java.lang.String" itemvalue="Application.CrawlerReader" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.AppConfigUtilsTest.isDebug" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.AppConfigUtilsTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.NOWCODERCrawlerTest.getCuCaoTarget" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.NOWCODERCrawlerTest.getCuCaoTarget" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.JobInfoCacheServiceImplTest.flush" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.JobInfoServiceImplTest.dropTableIfExits" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.CrawlerWriter" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.NOWCODERCrawlerTest.getCuCaoTarget" />
-        <item index="2" class="java.lang.String" itemvalue="Application.CrawlerReader" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.AppConfigUtilsTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.AppConfigUtilsTest.isDebug" />
+        <item index="1" class="java.lang.String" itemvalue="Application.CrawlerReader" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.JobInfoCacheServiceImplTest.flush" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.JobInfoServiceImplTest.dropTableIfExits" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.NOWCODERCrawlerTest.getCuCaoTarget" />
       </list>
     </recent_temporary>
   </component>
@@ -1404,7 +1413,7 @@
       <workItem from="1469874235654" duration="1689000" />
       <workItem from="1469925243076" duration="18626000" />
       <workItem from="1470039177617" duration="11831000" />
-      <workItem from="1470204527292" duration="46031000" />
+      <workItem from="1470204527292" duration="69647000" />
     </task>
     <task id="LOCAL-00001" summary="添加注释，&#10;droptable&#10;MD5属性">
       <created>1470037334372</created>
@@ -1417,26 +1426,26 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AppConfigUtilsTest - 2016.08.05 at 16h 21m 43s.xml">
-      <configuration name="AppConfigUtilsTest" configurationId="JUnit" />
+    <history-entry file="JobInfoCacheServiceImplTest_flush - 2016.08.07 at 14h 41m 06s.xml">
+      <configuration name="JobInfoCacheServiceImplTest.flush" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppConfigUtilsTest_isDebug - 2016.08.05 at 16h 14m 01s.xml">
-      <configuration name="AppConfigUtilsTest.isDebug" configurationId="JUnit" />
+    <history-entry file="JobInfoCacheServiceImplTest_flush - 2016.08.07 at 15h 08m 33s.xml">
+      <configuration name="JobInfoCacheServiceImplTest.flush" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppConfigUtilsTest_isDebug - 2016.08.05 at 16h 14m 14s.xml">
-      <configuration name="AppConfigUtilsTest.isDebug" configurationId="JUnit" />
+    <history-entry file="JobInfoCacheServiceImplTest_flush - 2016.08.07 at 15h 48m 07s.xml">
+      <configuration name="JobInfoCacheServiceImplTest.flush" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppConfigUtilsTest_isDebug - 2016.08.05 at 16h 20m 26s.xml">
-      <configuration name="AppConfigUtilsTest.isDebug" configurationId="JUnit" />
+    <history-entry file="JobInfoCacheServiceImplTest_flush - 2016.08.07 at 15h 49m 03s.xml">
+      <configuration name="JobInfoCacheServiceImplTest.flush" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppConfigUtilsTest_isDebug - 2016.08.05 at 16h 20m 45s.xml">
-      <configuration name="AppConfigUtilsTest.isDebug" configurationId="JUnit" />
+    <history-entry file="JobInfoServiceImplTest_dropTableIfExits - 2016.08.07 at 14h 41m 13s.xml">
+      <configuration name="JobInfoServiceImplTest.dropTableIfExits" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppConfigUtilsTest_isDebug - 2016.08.05 at 16h 21m 08s.xml">
-      <configuration name="AppConfigUtilsTest.isDebug" configurationId="JUnit" />
+    <history-entry file="JobInfoServiceImplTest_dropTableIfExits - 2016.08.07 at 15h 07m 33s.xml">
+      <configuration name="JobInfoServiceImplTest.dropTableIfExits" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NOWCODERCrawlerTest_getCuCaoTarget - 2016.08.06 at 10h 41m 21s.xml">
-      <configuration name="NOWCODERCrawlerTest.getCuCaoTarget" configurationId="JUnit" />
+    <history-entry file="JobInfoServiceImplTest_dropTableIfExits - 2016.08.07 at 15h 08m 30s.xml">
+      <configuration name="JobInfoServiceImplTest.dropTableIfExits" configurationId="JUnit" />
     </history-entry>
     <history-entry file="NOWCODERCrawlerTest_getCuCaoTarget - 2016.08.06 at 10h 53m 38s.xml">
       <configuration name="NOWCODERCrawlerTest.getCuCaoTarget" configurationId="JUnit" />
@@ -1449,7 +1458,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160150000" />
+    <option name="totallyTimeSpent" value="183766000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1463,7 +1472,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="800" y="0" width="800" height="860" extended-state="1" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1479,16 +1488,16 @@
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49462366" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33064517" sideWeight="0.49485862" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18010753" sideWeight="0.49485862" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49462366" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23790322" sideWeight="0.48714653" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61290324" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4271978" sideWeight="0.66452444" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17876343" sideWeight="0.66452444" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7" sideWeight="0.49441788" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28727508" sideWeight="0.49441788" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.4974293" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24614395" sideWeight="0.50558215" order="4" side_tool="true" content_ui="tabs" />
@@ -1551,12 +1560,6 @@
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AttentionUtils.java</url>
           <line>59</line>
           <properties />
@@ -1564,12 +1567,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java</url>
-          <line>119</line>
+          <line>124</line>
           <properties />
           <option name="timeStamp" value="123" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="125" />
+      <option name="time" value="132" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1582,98 +1585,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libs/selenium-2.53.1/CHANGELOG">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="237" column="77" selection-start-line="237" selection-start-column="77" selection-end-line="237" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RedisTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/beans/JobInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/HtmlUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="64" column="51" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.2.RELEASE/spring-context-4.0.2.RELEASE.jar!/org/springframework/context/support/AbstractApplicationContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="706" column="0" selection-start-line="706" selection-start-column="0" selection-end-line="706" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.2.RELEASE/spring-context-4.0.2.RELEASE.jar!/org/springframework/context/support/ClassPathXmlApplicationContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.2.RELEASE/spring-core-4.0.2.RELEASE.jar!/org/springframework/util/ClassUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.2.RELEASE/spring-core-4.0.2.RELEASE.jar!/org/springframework/core/io/DefaultResourceLoader.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#720#721#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.2.RELEASE/spring-core-4.0.2.RELEASE-sources.jar!/org/springframework/core/io/DefaultResourceLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1712,14 +1623,6 @@
           <folding>
             <element signature="e#2128#2129#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1820,8 +1723,8 @@
         <state relative-caret-position="368">
           <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
           <folding>
-            <element signature="e#963#1485#0" expanded="true" />
-            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#963#1485#0" expanded="false" />
+            <element signature="e#1484#1485#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1838,22 +1741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
           <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="20" column="104" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1890,24 +1777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/job-attention.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1924,26 +1793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/school.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="53" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-280">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding>
-            <element signature="method#start#0;class#CrawlerServiceImpl#0" expanded="false" />
-            <element signature="e#6010#6011#0" expanded="true" />
-            <element signature="e#6064#6065#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/selenium-2.53.1/selenium-java-2.53.1-srcs.jar!/org/openqa/selenium/WebDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1952,24 +1801,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NOWCODERCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/JobInfoFilters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="531">
           <caret line="42" column="20" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1306#1307#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1306#1307#0" expanded="false" />
+            <element signature="e#1334#1335#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1990,25 +1829,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="92" column="17" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-          <folding>
-            <element signature="e#3267#3268#0" expanded="true" />
-            <element signature="e#3327#3328#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/FaceExperienceFilters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
           <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1314#1315#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1314#1315#0" expanded="false" />
+            <element signature="e#1359#1360#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2018,7 +1846,7 @@
         <state relative-caret-position="253">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2028,38 +1856,202 @@
         <state relative-caret-position="184">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#259#260#0" expanded="false" />
+            <element signature="e#307#308#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RedisTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/crawlers/NOWCODERCrawlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/expcrawler-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NOWCODERCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/Properties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="949" column="18" selection-start-line="949" selection-start-column="18" selection-end-line="949" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/services/impl/JobInfoServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/Executors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/ProfileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="85" selection-start-line="30" selection-start-column="85" selection-end-line="30" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.11/aspectjrt-1.6.11.jar!/org/aspectj/lang/annotation/Pointcut.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/jobcrawler-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="156">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4339#4340#0" expanded="true" />
-            <element signature="e#4389#4390#0" expanded="true" />
-            <element signature="e#4865#4866#0" expanded="true" />
-            <element signature="e#4919#4920#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/advice/TimeAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/app.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="177">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -2069,11 +2061,20 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
+          <artifact-editor>
+            <show-content>
+              <type id="jpa-descriptors" />
+              <type id="javaee-facet-resources" />
+              <type id="library" />
+              <type id="artifact" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>bbsClaw:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.1816092" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -2085,7 +2086,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.1816092" />
               </list>
             </option>
           </splitter-proportions>
@@ -2108,7 +2109,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.1816092" />
               </list>
             </option>
           </splitter-proportions>
@@ -2120,7 +2121,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.48735633" />
+                <option value="0.1816092" />
                 <option value="0.6" />
               </list>
             </option>
@@ -2145,7 +2146,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.48735633" />
+                <option value="0.1816092" />
               </list>
             </option>
           </splitter-proportions>

@@ -2,12 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
-    <mvc:annotation-driven/>
+    <context:annotation-config/>
     <context:component-scan base-package="com.leocai.bbscraw"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -15,7 +14,8 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <util:properties id="schoolSettings" location="classpath:school.properties"/>
+    <util:properties id="jobCrawlerConfig" location="classpath:config/jobcrawler-config.properties"/>
+    <util:properties id="expCrawlerConfig" location="classpath:config/expcrawler-config.properties"/>
     <util:properties id="redisProperties" location="classpath:/config/redis.properties"/>
     <util:properties id="appProperties" location="classpath:/config/app.properties"/>
     <util:properties id="jobAttentionProp" location="classpath:/config/job-attention.properties"/>
@@ -50,6 +50,9 @@
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.leocai.bbscraw.mappers"/>
     </bean>
+
+    <aop:aspectj-autoproxy />
+    <bean class="com.leocai.bbscraw.advice.TimeAdvice"/>
 
 
 </beans>

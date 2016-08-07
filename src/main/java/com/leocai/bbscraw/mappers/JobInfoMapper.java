@@ -30,8 +30,8 @@ public interface JobInfoMapper {
 
     @Insert(" DROP TABLE IF EXISTS jobinfo\n") void dropTableIfExists();
 
-    @Insert("insert into jobinfo(title, hot, jobdate, company, href,source,isread,contentmd5) values (#{title}, #{hot}, #{jobDate}, #{company},#{href},#{source},#{isRead},#{contentMD5})") int insertJobInfo(
-            JobInfo jobInfo);
+    @Insert("insert into jobinfo(title, hot, jobdate, company, href,source,isread,contentmd5) values (#{title}, #{hot}, #{jobDate}, #{company},#{href},#{source},#{isRead},#{contentMD5})")
+    void insertJobInfo(JobInfo jobInfo);
 
     @Select("select * from jobinfo order by jobdate desc") List<JobInfo> getJobInfos();
 

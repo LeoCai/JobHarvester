@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Properties;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by caiqingliang on 2016/8/6.
  */
@@ -20,11 +18,10 @@ import static org.junit.Assert.*;
 
     MyCrawler nowCoder;
 
-    @Autowired Properties schoolSettings;
+    @Autowired Properties jobCrawlerConfig;
 
     @Before public void setUp() throws Exception {
-
-        String url = schoolSettings.getProperty("NOWCODER");
+        String url = jobCrawlerConfig.getProperty("NOWCODER");
         nowCoder = new NOWCODERCrawler(url);
     }
 
