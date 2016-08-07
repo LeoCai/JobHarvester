@@ -26,7 +26,7 @@ public class SJUCrawler extends MyCrawler {
         setSource("上交bbs");
     }
 
-    @Override protected JobInfo getInfoDTO(WebElement we) {
+    @Override public JobInfo getInfoDTO(WebElement we) {
         JobInfoIndex jobInfoIndex = new JobInfoIndex();
         jobInfoIndex.setHrefIdnex(1);
         jobInfoIndex.setTimeIndex(3);

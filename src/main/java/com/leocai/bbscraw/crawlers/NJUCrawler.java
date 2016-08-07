@@ -24,7 +24,7 @@ public class NJUCrawler extends MyCrawler {
         setSource("南大bbs");
     }
 
-    protected JobInfo getInfoDTO(WebElement we) {
+    public JobInfo getInfoDTO(WebElement we) {
         JobInfoIndex jobInfoIndex = new JobInfoIndex();
         jobInfoIndex.setHotIndex(6);
         jobInfoIndex.setHrefIdnex(1);

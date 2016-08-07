@@ -19,7 +19,7 @@ public class NOWCODERCrawler extends MyCrawler {
         setSource("牛客网");
     }
 
-    @Override protected JobInfo getInfoDTO(WebElement we) {
+    @Override public JobInfo getInfoDTO(WebElement we) {
         String title = we.findElement(By.className("discuss-detail")).findElement(By.tagName("a")).getText();
         String time = we.findElement(By.className("discuss-detail")).findElement(By.tagName("p")).getText().split(
                 "  ")[1];
@@ -46,11 +46,11 @@ public class NOWCODERCrawler extends MyCrawler {
         return jobInfo;
     }
 
-    @Override protected List<WebElement> getCuCaoTarget() {
+    @Override public List<WebElement> getCuCaoTarget() {
         return driver.findElement(By.className("common-list")).findElements(By.tagName("li"));
     }
 
-    @Override protected void nextPage() {
+    @Override public void nextPage() {
         driver.get(driver.findElement(By.className("js-next-pager")).findElement(By.tagName("a")).getAttribute("href"));
     }
 }

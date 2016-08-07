@@ -1,5 +1,6 @@
 package com.leocai.bbscraw;
 
+import com.leocai.bbscraw.advice.TimeAdvice;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.utils.ProfileUtils;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 @Component public class CrawlerWriter {
 
     @Autowired @Setter @Getter private CrawlerService crawlerService;
+    @Autowired private                 TimeAdvice     timeAdvice;
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
@@ -26,10 +28,11 @@ import org.springframework.stereotype.Component;
     }
 
     public void start() {
-//        crawlerService.crawByPage();
+        //        crawlerService.crawByPage();
         ProfileUtils.start("continueCraw");
         crawlerService.continueCraw();
         ProfileUtils.end("continueCraw");
+        timeAdvice.print();
     }
 
 }

@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,7 @@ public abstract class MyCrawler {
     protected Logger logger      = Logger.getLogger(getClass());
     protected int    currentPage = 1;
     protected               WebDriver        driver;
+    @Autowired
     @Getter @Setter private JobInfoService   jobInfoService;
     @Getter @Setter private AttentionFilters attentionFilters;
     /**
@@ -48,12 +50,13 @@ public abstract class MyCrawler {
     /**
      * 初始化，禁用图片css
      */
-    private void init() {
+    public void init() {
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("permissions.default.stylesheet", 2);
         profile.setPreference("permissions.default.image", 2);
         driver = new FirefoxDriver(profile);
         pageNum = AppConfigUtils.getCrawMaxNum();
+        driver.get(url);
         //        driver.manage().window().setPosition(new Point(-2000, 0));
     }
 
@@ -106,7 +109,7 @@ public abstract class MyCrawler {
         ProfileUtils.end(getClass().getSimpleName() + ".crawSince");
     }
 
-    private boolean dateEarly(JobInfo infoDTO, Date date) {
+    public boolean dateEarly(JobInfo infoDTO, Date date) {
         return infoDTO.getJobDate().getTime() < date.getTime();
     }
 
@@ -116,21 +119,21 @@ public abstract class MyCrawler {
      * @param we
      * @return
      */
-    protected abstract JobInfo getInfoDTO(WebElement we);
+    public abstract JobInfo getInfoDTO(WebElement we);
 
     /**
      * 获取粗糙的目标，可能需要重写
      *
      * @return
      */
-    protected List<WebElement> getCuCaoTarget() {
+    public List<WebElement> getCuCaoTarget() {
         return driver.findElements(By.tagName("tr"));
     }
 
     /**
      * 下一页，可能需要重写
      */
-    protected void nextPage() {
+    public void nextPage() {
         WebElement el = driver.findElement(By.linkText("上一页"));
         el.click();
     }
@@ -139,4 +142,11 @@ public abstract class MyCrawler {
         driver.close();
     }
 
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 }

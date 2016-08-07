@@ -13,11 +13,11 @@ public class ZJUCrawler extends MyCrawler {
         super(url);
     }
 
-    protected JobInfo getInfoDTO(WebElement we) {
+    public JobInfo getInfoDTO(WebElement we) {
         return null;
     }
 
-    protected void nextPage() {
+    public void nextPage() {
         driver.findElement(By.className("fenye")).findElements(By.tagName("li")).get(currentPage++).click();
 
     }

@@ -23,7 +23,7 @@ public class NYUCrawler extends MyCrawler {
         setSource("南邮bbs");
     }
 
-    @Override protected JobInfo getInfoDTO(WebElement we) {
+    @Override public JobInfo getInfoDTO(WebElement we) {
 
         JobInfoIndex jobInfoIndex = new JobInfoIndex();
         jobInfoIndex.setHrefIdnex(1);
@@ -55,11 +55,11 @@ public class NYUCrawler extends MyCrawler {
         return JobInfoExtractUtils.simpleExtract(we, jobInfoIndex, jobDateParser);
     }
 
-    protected List<WebElement> getCuCaoTarget() {
+    public List<WebElement> getCuCaoTarget() {
         return driver.findElements(By.tagName("tr"));
     }
 
-    protected void nextPage() {
+    public void nextPage() {
         WebElement el = driver.findElement(By.linkText(">>"));
         el.click();
     }

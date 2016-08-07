@@ -8,13 +8,16 @@ import com.leocai.bbscraw.filters.JobInfoFilters;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
+import com.leocai.bbscraw.utils.AttentionUtils;
 import com.leocai.bbscraw.utils.HtmlUtils;
 import com.leocai.bbscraw.utils.ProfileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.*;
@@ -40,8 +43,10 @@ import java.util.concurrent.*;
     /**
      * 用于存放各个爬虫类
      */
-    private HashMap<String, MyCrawler> jobCrawlerMap = new HashMap<String, MyCrawler>();
-    private HashMap<String, MyCrawler> expCrawlerMap = new HashMap<String, MyCrawler>();
+    @Resource(name="jobCrawlerMap")
+    private Map<String, MyCrawler> jobCrawlerMap;
+//    @@Resource(name="expCrawlerMap")
+//    private HashMap<String, MyCrawler> expCrawlerMap = new HashMap<String, MyCrawler>();
 
     @Autowired private JobInfoService        jobInfoService;
     private            ExecutorService       executorService;
@@ -65,8 +70,8 @@ import java.util.concurrent.*;
      */
     //TODO properties 使用工厂模式
     public void loadCrawlers() {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        loadCrawlers(classLoader, jobCrawlerConfig, jobCrawlerMap, jobInfoFilters);
+//        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+//        loadCrawlers(classLoader, jobCrawlerConfig, jobCrawlerMap, jobInfoFilters);
         //        loadCrawlers(classLoader, expCrawlerConfig, expCrawlerMap, faceExperienceFilters);
     }
 
@@ -107,7 +112,31 @@ import java.util.concurrent.*;
                 public String call() throws Exception {
                     MyCrawler crawler = jobCrawlerMap.get(key);
                     Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
-                    crawler.crawSince(date);
+//                    crawler.crawSince(date);
+
+                    crawler.init();
+                    for (int i = 0; i < crawler.getPageNum(); i++) {
+                        ProfileUtils.start(getClass().getSimpleName() + ".crawOnePage");
+                        List<WebElement> wes = crawler.getCuCaoTarget();
+                        for (WebElement we : wes) {
+                            String text = we.getText();
+                            if (!crawler.getAttentionFilters().isAttention(text) || crawler.getAttentionFilters().isIgnored(text)) continue;
+                            JobInfo infoDTO = crawler.getInfoDTO(we);
+                            infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
+                            if (date != null && crawler.dateEarly(infoDTO, date)) {
+                                logger.info("find date");
+                                return null;
+                            }
+                            infoDTO.setSource(crawler.getSource());
+                            if (crawler.getAttentionFilters().filted(infoDTO)) continue;
+                            jobInfoService.produceJobInfo(infoDTO);
+                        }
+                        ProfileUtils.end(getClass().getSimpleName() + ".crawOnePage");
+                        ProfileUtils.start(getClass().getSimpleName() + ".nextPage");
+                        crawler.nextPage();
+                        ProfileUtils.end(getClass().getSimpleName() + ".nextPage");
+                    }
+
                     jobCrawlerMap.get(key).close();
                     return null;
                 }
