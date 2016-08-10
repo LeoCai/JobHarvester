@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--爬虫类配置-->
+    <bean id="njuCrawler" class="com.leocai.bbscraw.crawlers.NJUCrawler">
+        <constructor-arg value="http://bbs.nju.edu.cn/board?board=JobExpress"/>
+        <property name="attentionFilters" ref="jobInfoFilters"/>
+    </bean>
+    <bean id="njucsCrawler" class="com.leocai.bbscraw.crawlers.NJUCSCrawler">
+        <constructor-arg value="http://bbs.nju.edu.cn/board?board=D_Computer"/>
+        <property name="attentionFilters" ref="jobInfoFilters"/>
+    </bean>
+    <bean id="nowcoderCrawler" class="com.leocai.bbscraw.crawlers.NOWCODERCrawler">
+        <constructor-arg value="http://www.nowcoder.com/discuss"/>
+        <property name="attentionFilters" ref="jobInfoFilters"/>
+    </bean>
+    <bean id="nyuCrawler" class="com.leocai.bbscraw.crawlers.NYUCrawler">
+        <constructor-arg value="http://bbs.cloud.icybee.cn/board/Job"/>
+        <property name="attentionFilters" ref="jobInfoFilters"/>
+    </bean>
+    <bean id="sjuCrawler" class="com.leocai.bbscraw.crawlers.SJUCrawler">
+        <constructor-arg value="https://bbs.sjtu.edu.cn/bbsdoc?board=JobInfo"/>
+        <property name="attentionFilters" ref="jobInfoFilters"/>
+    </bean>
+    <util:map id="jobCrawlerMap" scope="prototype" map-class="java.util.HashMap"
+              key-type="java.lang.String" value-type="com.leocai.bbscraw.crawlers.MyCrawler">
+        <entry key="NJU" value-ref="njuCrawler"/>
+        <entry key="NJUCS" value-ref="njucsCrawler"/>
+        <entry key="NOWCODER" value-ref="nowcoderCrawler"/>
+        <entry key="NYU" value-ref="nyuCrawler"/>
+        <entry key="SJU" value-ref="sjuCrawler"/>
+    </util:map>
+
+    <bean id="expNowcoderCrawler" class="com.leocai.bbscraw.crawlers.NOWCODERCrawler">
+        <constructor-arg value="http://www.nowcoder.com/discuss?type=2&amp;order=0"/>
+        <property name="attentionFilters" ref="faceExperienceFilters"/>
+    </bean>
+    <util:map id="expCrawlerMap" scope="prototype" map-class="java.util.HashMap"
+              key-type="java.lang.String" value-type="com.leocai.bbscraw.crawlers.MyCrawler">
+        <entry key="NOWCODER" value-ref="expNowcoderCrawler"/>
+    </util:map>
+
+</beans>

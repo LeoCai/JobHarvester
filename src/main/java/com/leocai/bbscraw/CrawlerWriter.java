@@ -2,6 +2,7 @@ package com.leocai.bbscraw;
 
 import com.leocai.bbscraw.advice.TimeAdvice;
 import com.leocai.bbscraw.services.CrawlerService;
+import com.leocai.bbscraw.utils.MySpringUtils;
 import com.leocai.bbscraw.utils.ProfileUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
     @Autowired private                 TimeAdvice     timeAdvice;
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        ApplicationContext applicationContext = MySpringUtils.loadContext();
         CrawlerWriter crawlerWriter = applicationContext.getBean("crawlerWriter", CrawlerWriter.class);
         crawlerWriter.start();
         ProfileUtils.print();

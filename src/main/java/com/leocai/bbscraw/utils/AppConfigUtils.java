@@ -23,9 +23,11 @@ import java.util.Properties;
     @Getter private static boolean redisFlush     = true;
     @Getter private static int     crawMaxNum     = 50;
     @Getter private static int     threadNum      = 5;
+    @Getter private static boolean expCrawler     = false;
 
     static {
-        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("config/app.properties");
+        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                "config/properties/app.properties");
         Properties appProperties = new Properties();
         try {
             appProperties.load(in);
@@ -36,9 +38,9 @@ import java.util.Properties;
             redisFlush = Boolean.parseBoolean(appProperties.getProperty("redis.flush"));
             crawMaxNum = Integer.parseInt(appProperties.getProperty("crawMaxNum"));
             threadNum = Integer.parseInt(appProperties.getProperty("thread.num"));
+            expCrawler = Boolean.parseBoolean(appProperties.getProperty("exp"));
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
     }
-
 }

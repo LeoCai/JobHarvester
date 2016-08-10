@@ -24,11 +24,13 @@ import java.util.Properties;
     }
 
     @Override public boolean isAttention(String content) {
-        if (content.length() > 300) return false;
-        for (String at : attentionCompanys) {
-            if (content.contains(at)) return true;
-        }
-        return false;
+        if(content.contains("百度")) return true;
+        else return false;
+//        if (content.length() > 300) return false;
+//        for (String at : attentionCompanys) {
+//            if (content.contains(at)) return true;
+//        }
+//        return false;
     }
 
     @Override public boolean isIgnored(String text) {

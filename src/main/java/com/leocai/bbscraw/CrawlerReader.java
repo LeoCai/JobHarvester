@@ -4,6 +4,7 @@ import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.leocai.bbscraw.utils.HtmlUtils;
+import com.leocai.bbscraw.utils.MySpringUtils;
 import com.leocai.bbscraw.utils.ProfileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,7 +22,7 @@ import java.util.List;
     @Autowired JobInfoService jobInfoService;
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        ApplicationContext applicationContext = MySpringUtils.loadContext();
         CrawlerReader crawlerReader = applicationContext.getBean("crawlerReader", CrawlerReader.class);
         crawlerReader.start();
     }

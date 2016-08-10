@@ -22,7 +22,7 @@ public class AttentionUtils {
 
     static {
         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(
-                "config/job-attention.properties");
+                "config/attention/job-attention.properties");
         Properties properties = new Properties();
         try {
             properties.load(new InputStreamReader(in, "UTF-8"));

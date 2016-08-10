@@ -29,29 +29,18 @@ import java.util.concurrent.*;
  */
 @Service public class CrawlerServiceImpl implements CrawlerService {
 
-    public static final String PACAGE         = "com.leocai.bbscraw.crawlers.";
-    public static final String CRAWLER_SUFFIX = "Crawler";
-
     private Logger logger = Logger.getLogger(getClass());
-
-    /**
-     * 爬虫配置
-     */
-    @Autowired private Properties jobCrawlerConfig;
-    @Autowired private Properties expCrawlerConfig;
 
     /**
      * 用于存放各个爬虫类
      */
-    @Resource(name="jobCrawlerMap")
-    private Map<String, MyCrawler> jobCrawlerMap;
-//    @@Resource(name="expCrawlerMap")
-//    private HashMap<String, MyCrawler> expCrawlerMap = new HashMap<String, MyCrawler>();
+    @Resource(name = "jobCrawlerMap") private Map<String, MyCrawler> jobCrawlerMap;
 
-    @Autowired private JobInfoService        jobInfoService;
-    private            ExecutorService       executorService;
-    @Autowired private FaceExperienceFilters faceExperienceFilters;
-    @Autowired private JobInfoFilters        jobInfoFilters;
+    @Resource(name = "expCrawlerMap") private Map<String, MyCrawler> expCrawlerMap;
+    private                                   Map<String, MyCrawler> cuCrawlerMap;
+
+    @Autowired private JobInfoService  jobInfoService;
+    private            ExecutorService executorService;
 
     /**
      * 使用类加载器加载各个爬虫类
@@ -60,59 +49,24 @@ import java.util.concurrent.*;
      */
     @PostConstruct public void init() {
         ProfileUtils.start("init");
-        loadCrawlers();
         executorService = Executors.newFixedThreadPool(AppConfigUtils.getThreadNum());
         ProfileUtils.end("init");
-    }
-
-    /**
-     * 类加载器加载爬虫类放到map中
-     */
-    //TODO properties 使用工厂模式
-    public void loadCrawlers() {
-//        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//        loadCrawlers(classLoader, jobCrawlerConfig, jobCrawlerMap, jobInfoFilters);
-        //        loadCrawlers(classLoader, expCrawlerConfig, expCrawlerMap, faceExperienceFilters);
-    }
-
-    /**
-     * 类加载器加载爬虫类
-     *
-     * @param classLoader      类加载器
-     * @param crawlerConfig    爬虫配置
-     * @param crawlerMap       爬虫Map
-     * @param attentionFilters 爬虫过滤器
-     */
-    private void loadCrawlers(ClassLoader classLoader, Properties crawlerConfig, HashMap<String, MyCrawler> crawlerMap,
-                              AttentionFilters attentionFilters) {
-        Set<Object> keys = crawlerConfig.keySet();
-        for (Object key : keys) {
-            try {
-                Class<?> mc = classLoader.loadClass(PACAGE + key + CRAWLER_SUFFIX);
-                Class<MyCrawler> crawer = (Class<MyCrawler>) mc;
-                MyCrawler c = crawer.getConstructor(String.class).newInstance(crawlerConfig.getProperty((String) key));
-                c.setJobInfoService(jobInfoService);
-                c.setAttentionFilters(attentionFilters);
-                crawlerMap.put((String) key, c);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                logger.error(e.getMessage(), e);
-            }
-        }
     }
 
     /**
      * 从上次时间继续爬虫
      */
     public void continueCraw() {
-        Set<String> keys = jobCrawlerMap.keySet();
+        if (!AppConfigUtils.isExpCrawler()) cuCrawlerMap = jobCrawlerMap;
+        else cuCrawlerMap = expCrawlerMap;
+        Set<String> keys = cuCrawlerMap.keySet();
         List<Future<String>> fts = new ArrayList<>(keys.size());
         for (final String key : keys) {
             Future<String> ft = executorService.submit(new Callable<String>() {
 
                 public String call() throws Exception {
-                    MyCrawler crawler = jobCrawlerMap.get(key);
+                    MyCrawler crawler = cuCrawlerMap.get(key);
                     Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
-//                    crawler.crawSince(date);
 
                     crawler.init();
                     for (int i = 0; i < crawler.getPageNum(); i++) {
@@ -120,7 +74,8 @@ import java.util.concurrent.*;
                         List<WebElement> wes = crawler.getCuCaoTarget();
                         for (WebElement we : wes) {
                             String text = we.getText();
-                            if (!crawler.getAttentionFilters().isAttention(text) || crawler.getAttentionFilters().isIgnored(text)) continue;
+                            if (!crawler.getAttentionFilters().isAttention(text)
+                                || crawler.getAttentionFilters().isIgnored(text)) continue;
                             JobInfo infoDTO = crawler.getInfoDTO(we);
                             infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
                             if (date != null && crawler.dateEarly(infoDTO, date)) {

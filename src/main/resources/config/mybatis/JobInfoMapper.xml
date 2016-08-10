@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leocai.bbscraw.mappers.JobInfoMapper">
+
+    <resultMap id="jobInfoResult" type="JobInfo">
+        <result column="title" property="title" />
+        <result column="hot" property="hot" />
+        <result column="jobdate" property="jobDate" />
+        <result column="company" property="company" />
+        <result column="href" property="href" />
+        <result column="source" property="source" />
+        <result column="isread" property="isRead" />
+        <result column="contentmd5" property="contentMD5" />
+    </resultMap>
+
+    <insert id="createTableIfNotExits">
+       CREATE TABLE IF NOT EXISTS JOBINFO(
+           ID INT PRIMARY KEY AUTO_INCREMENT,
+           TITLE TEXT NOT NULL,
+           HOT INT NOT NULL DEFAULT 0,
+           JOBDATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+           COMPANY CHAR(15) NOT NULL DEFAULT '未识别',
+           HREF VARCHAR(300) NOT NULL DEFAULT '',
+           CONTENTMD5 CHAR(32) UNIQUE NOT NULL DEFAULT '',
+           ISREAD BOOLEAN NOT NULL DEFAULT FALSE,
+           SOURCE CHAR(20) NOT NULL DEFAULT '无',
+           INDEX INDEX_JOBDATE(JOBDATE)
+       )
+    </insert>
+
+    <insert id="dropTableIfExists">
+        DROP TABLE IF EXISTS JOBINFO
+    </insert>
+
+    <insert id="insertJobInfo" parameterType="JobInfo">
+        INSERT INTO
+        JOBINFO(TITLE, HOT, JOBDATE, COMPANY, HREF,SOURCE,ISREAD,CONTENTMD5)
+        VALUES
+        (#{title}, #{hot}, #{jobDate}, #{company},#{href},#{source},#{isRead},#{contentMD5})
+    </insert>
+
+    <select id="getJobInfos" resultMap="jobInfoResult">
+            SELECT * FROM JOBINFO ORDER BY JOBDATE DESC
+    </select>
+
+    <select id="getJobInfosByDateRange" resultMap="jobInfoResult">
+        SELECT * FROM JOBINFO WHERE JOBDATE &gt;#{start} AND JOBDATE &lt;# {END}
+    </select>
+
+    <select id="getCompanys" resultType="String">
+        SELECT DISTINCT(COMPANY) FROM JOBINFO
+    </select>
+
+    <select id="getLatestMd5" resultType="String">
+        SELECT contentMD5 FROM JOBINFO WHERE SOURCE = #{source} ORDER BY JOBDATE DESC LIMIT 1
+    </select>
+
+    <select id="getJobInfosSince" resultMap="jobInfoResult">
+        SELECT * FROM JOBINFO WHERE JOBDATE >#{date} ORDER BY JOBDATE DESC
+    </select>
+
+
+    <select id="getLatestDateBySource" resultType="Date">
+        SELECT JOBDATE FROM JOBINFO WHERE SOURCE=#{source} ORDER BY JOBDATE DESC LIMIT 1
+    </select>
+
+
+</mapper>

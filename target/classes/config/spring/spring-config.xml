@@ -6,82 +6,57 @@
        xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <!--IOC注解配置-->
     <context:annotation-config/>
     <context:component-scan base-package="com.leocai.bbscraw"/>
+    <!--END IOC注解配置-->
 
+    <!--AOP注解配置-->
+    <aop:aspectj-autoproxy/>
+    <!--END AOP注解配置-->
+
+    <!--事务配置-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <!--END 事务配置-->
 
-    <util:properties id="jobCrawlerConfig" location="classpath:config/jobcrawler-config.properties"/>
-    <util:properties id="expCrawlerConfig" location="classpath:config/expcrawler-config.properties"/>
-    <util:properties id="redisProperties" location="classpath:/config/redis.properties"/>
-    <util:properties id="appProperties" location="classpath:/config/app.properties"/>
-    <util:properties id="jobAttentionProp" location="classpath:/config/job-attention.properties"/>
-    <util:properties id="expAttentionProp" location="classpath:/config/exp-attention.properties"/>
+    <!--properties文件配置-->
+    <util:properties id="jobCrawlerConfig" location="classpath:config/properties/jobcrawler-config.properties"/>
+    <util:properties id="expCrawlerConfig" location="classpath:config/properties/expcrawler-config.properties"/>
+    <util:properties id="redisProperties" location="classpath:config/properties/redis.properties"/>
+    <util:properties id="appProperties" location="classpath:config/properties/app.properties"/>
+    <util:properties id="jobAttentionProp" location="classpath:config/attention/job-attention.properties"/>
+    <util:properties id="expAttentionProp" location="classpath:config/attention/exp-attention.properties"/>
+    <!--END properties文件配置-->
 
-
+    <!--Mybatis与数据库配置-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:config/jdbc.properties</value>
+                <value>classpath:config/properties/jdbc.properties</value>
             </list>
         </property>
     </bean>
-
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.leocai.bbscraw.beans"/>
-        <property name="mapperLocations" value="classpath*:mybatis/*.xml"/>
+        <property name="mapperLocations" value="classpath*:config/mybatis/*.xml"/>
     </bean>
-
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
-
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.leocai.bbscraw.mappers"/>
     </bean>
-
-    <bean id="njuCrawler" class="com.leocai.bbscraw.crawlers.NJUCrawler">
-        <constructor-arg value="http://bbs.nju.edu.cn/board?board=JobExpress"/>
-        <property name="attentionFilters" ref="jobInfoFilters"/>
-    </bean>
-    <bean id="njucsCrawler" class="com.leocai.bbscraw.crawlers.NJUCSCrawler">
-        <constructor-arg value="http://bbs.nju.edu.cn/board?board=D_Computer"/>
-        <property name="attentionFilters" ref="jobInfoFilters"/>
-    </bean>
-    <bean id="nowcoderCrawler" class="com.leocai.bbscraw.crawlers.NOWCODERCrawler">
-        <constructor-arg value="http://www.nowcoder.com/discuss?type=2\&amp;order=0"/>
-        <property name="attentionFilters" ref="jobInfoFilters"/>
-    </bean>
-    <bean id="nyuCrawler" class="com.leocai.bbscraw.crawlers.NYUCrawler">
-        <constructor-arg value="http://bbs.cloud.icybee.cn/board/Job"/>
-        <property name="attentionFilters" ref="jobInfoFilters"/>
-    </bean>
-    <bean id="sjuCrawler" class="com.leocai.bbscraw.crawlers.SJUCrawler">
-        <constructor-arg value="https://bbs.sjtu.edu.cn/bbsdoc?board=JobInfo"/>
-        <property name="attentionFilters" ref="jobInfoFilters"/>
-    </bean>
-    <util:map id="jobCrawlerMap" scope="prototype" map-class="java.util.HashMap"
-              key-type="java.lang.String" value-type="com.leocai.bbscraw.crawlers.MyCrawler">
-        <entry key="NJU" value-ref="njuCrawler"/>
-        <entry key="NJUCS" value-ref="njucsCrawler"/>
-        <entry key="NOWCODER" value-ref="nowcoderCrawler"/>
-        <entry key="NYU" value-ref="nyuCrawler"/>
-        <entry key="SJU" value-ref="sjuCrawler"/>
-    </util:map>
-
-    <aop:aspectj-autoproxy/>
-    <!--<bean class="com.leocai.bbscraw.advice.TimeAdvice"/>-->
+    <!--END Mybatis与数据库配置-->
 
 
 </beans>

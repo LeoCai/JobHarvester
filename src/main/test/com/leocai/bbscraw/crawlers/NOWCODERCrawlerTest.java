@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * Created by caiqingliang on 2016/8/6.
  */
-@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class NOWCODERCrawlerTest
+@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:config/spring/*.xml") public class NOWCODERCrawlerTest
         extends AbstractJUnit4SpringContextTests {
 
     MyCrawler nowCoder;

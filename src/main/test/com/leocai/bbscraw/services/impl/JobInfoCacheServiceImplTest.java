@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by caiqingliang on 2016/8/4.
  */
-@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class JobInfoCacheServiceImplTest
+@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:config/spring/*.xml") public class JobInfoCacheServiceImplTest
         extends AbstractJUnit4SpringContextTests {
 
     @Autowired JobInfoCacheService jobInfoCacheService;

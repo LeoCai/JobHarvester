@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Created by caiqingliang on 2016/8/5.
  */
-@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class AppConfigUtilsTest
+@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:config/spring/spring-config.xml") public class AppConfigUtilsTest
         extends AbstractJUnit4SpringContextTests {
 
     @Autowired AppConfigUtils appConfigUtils;

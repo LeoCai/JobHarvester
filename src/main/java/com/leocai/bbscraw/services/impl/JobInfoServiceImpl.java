@@ -127,6 +127,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     @PostConstruct public void createTableIfNotExits() {
+        if(!AppConfigUtils.isMysqlEnabled()) return;
         if (AppConfigUtils.isMysqlDropTable()) dropTableIfExits();
         try {
             jobInfoMapper.createTableIfNotExits();
@@ -144,6 +145,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public Date getLatestDateBySource(String source) {
+        if(source==null) return null;
         if (!AppConfigUtils.isMysqlEnabled()) return null;
         return jobInfoMapper.getLatestDateBySource(source);
     }

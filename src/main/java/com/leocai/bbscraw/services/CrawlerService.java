@@ -8,15 +8,7 @@ import javax.annotation.PreDestroy;
  */
 public interface CrawlerService {
 
-    @PostConstruct void loadCrawlers();
-
-    void crawlerToday();
-
     void continueCraw();
-
-    void crawByDate();
-
-    void crawByPage();
 
     @PreDestroy void close();
 

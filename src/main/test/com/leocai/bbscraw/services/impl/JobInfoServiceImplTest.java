@@ -1,7 +1,10 @@
 package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +18,9 @@ import java.util.List;
 /**
  * Created by caiqingliang on 2016/7/29.
  */
-@RunWith(SpringJUnit4ClassRunner.class) @ContextConfiguration(locations = "classpath:spring-config.xml") public class JobInfoServiceImplTest
-        extends AbstractJUnit4SpringContextTests {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:config/spring/*.xml")
+public class JobInfoServiceImplTest extends AbstractJUnit4SpringContextTests {
 
     @Test public void dropTableIfExits() throws Exception {
         jobInfoService.dropTableIfExits();
@@ -25,11 +29,14 @@ import java.util.List;
     @Test public void getJobInfos() throws Exception {
         List<JobInfo> jobInfos = jobInfoService.getJobInfos(false);
         System.out.println(jobInfos.toString());
-
     }
 
-    @Autowired CrawlerServiceImpl crawlerServiceImpl;
+    @Getter
+    @Setter
+    @Autowired CrawlerService crawlerService;
 
+    @Getter
+    @Setter
     @Autowired JobInfoService jobInfoService;
 
     @Test public void getLatestDateBySource() throws Exception {

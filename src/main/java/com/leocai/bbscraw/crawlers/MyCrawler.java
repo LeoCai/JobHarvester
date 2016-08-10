@@ -17,8 +17,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by caiqingliang on 2016/7/24.
@@ -27,17 +31,19 @@ import java.util.List;
 public abstract class MyCrawler {
 
     protected Logger logger      = Logger.getLogger(getClass());
+    /**
+     * 当前页
+     */
     protected int    currentPage = 1;
-    protected               WebDriver        driver;
-    @Autowired
-    @Getter @Setter private JobInfoService   jobInfoService;
-    @Getter @Setter private AttentionFilters attentionFilters;
+    protected                          WebDriver        driver;
+    @Autowired @Getter @Setter private JobInfoService   jobInfoService;
+    @Getter @Setter private            AttentionFilters attentionFilters;
+    ExecutorService executorService = Executors.newFixedThreadPool(1);
     /**
      * 页面url
      */
-    private                 String           url;
-    //TODO 爬的总页数
-    private int pageNum = 3;
+    private                            String           url;
+    @Getter @Setter private int pageNum = 3;
     /**
      * 爬虫来源
      */
@@ -55,9 +61,9 @@ public abstract class MyCrawler {
         profile.setPreference("permissions.default.stylesheet", 2);
         profile.setPreference("permissions.default.image", 2);
         driver = new FirefoxDriver(profile);
+        driver.manage().window().setPosition(new Point(-2000, 0));
         pageNum = AppConfigUtils.getCrawMaxNum();
         driver.get(url);
-        //        driver.manage().window().setPosition(new Point(-2000, 0));
     }
 
     /**
@@ -81,25 +87,31 @@ public abstract class MyCrawler {
      *
      * @param date
      */
-    public void crawSince(Date date) {
+    public void crawSince(final Date date) {
         ProfileUtils.start(getClass().getSimpleName() + ".crawSince");
         init();
         driver.get(url);
         for (int i = 0; i < pageNum; i++) {
             ProfileUtils.start(getClass().getSimpleName() + ".crawOnePage");
             List<WebElement> wes = getCuCaoTarget();
-            for (WebElement we : wes) {
-                String text = we.getText();
-                if (!attentionFilters.isAttention(text) || attentionFilters.isIgnored(text)) continue;
-                JobInfo infoDTO = getInfoDTO(we);
-                infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
-                if (date != null && dateEarly(infoDTO, date)) {
-                    logger.info("find date");
-                    return;
-                }
-                infoDTO.setSource(source);
-                if (attentionFilters.filted(infoDTO)) continue;
-                jobInfoService.produceJobInfo(infoDTO);
+            for (final WebElement we : wes) {
+
+                executorService.execute(new Runnable() {
+
+                    @Override public void run() {
+                        String text = we.getText();
+                        if (!attentionFilters.isAttention(text) || attentionFilters.isIgnored(text)) return;
+                        JobInfo infoDTO = getInfoDTO(we);
+                        infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
+                        if (date != null && dateEarly(infoDTO, date)) {
+                            logger.info("find date");
+                            return;
+                        }
+                        infoDTO.setSource(source);
+                        if (attentionFilters.filted(infoDTO)) return;
+                        jobInfoService.produceJobInfo(infoDTO);
+                    }
+                });
             }
             ProfileUtils.end(getClass().getSimpleName() + ".crawOnePage");
             ProfileUtils.start(getClass().getSimpleName() + ".nextPage");
@@ -142,11 +154,15 @@ public abstract class MyCrawler {
         driver.close();
     }
 
-    public int getPageNum() {
-        return pageNum;
-    }
+//    public static void main(String[] args) {
+//        List<Integer> k = new ArrayList<>();
+//        k.add(1);
+//        k.add(2);
+//        k.add(3);
+//        for(final Integer i:k){
+//            System.out.println(i);
+//
+//        }
+//    }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
 }
