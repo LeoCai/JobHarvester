@@ -1,14 +1,11 @@
 package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
-import com.leocai.bbscraw.comparators.HotComparator;
 import com.leocai.bbscraw.comparators.TimeComparator;
 import com.leocai.bbscraw.mappers.JobInfoMapper;
 import com.leocai.bbscraw.services.JobInfoCacheService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
-import com.leocai.bbscraw.utils.ProfileUtils;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,7 +18,9 @@ import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by caiqingliang on 2016/7/29.
@@ -32,6 +31,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     private Logger logger = Logger.getLogger(getClass());
     @Autowired @Getter @Setter private JobInfoMapper       jobInfoMapper;
     @Autowired @Getter @Setter private JobInfoCacheService jobInfoCacheService;
+
+    @Getter @Setter private BlockingQueue<JobInfo> jobInfoBlockingQueue = new LinkedBlockingQueue<>();
+
     /**
      * 并发收集jobinfo
      */
@@ -41,6 +43,24 @@ import java.util.concurrent.ConcurrentLinkedQueue;
      */
     //TODO 待优化，用set
     private Set<String>    avaliableComanys = new HashSet<>(20);
+    /**
+     * 总共产生的信息
+     */
+    private int totalInfoProduced;
+    /**
+     * 总共消耗的信息
+     */
+    private int totalInfoConsumed;
+
+    /**
+     * 爬取结束
+     */
+    @Getter @Setter private volatile boolean producedEnd;
+
+    /**
+     * 消费结束
+     */
+    @Getter @Setter private volatile boolean consumedEnd;
 
     public int insertJobInfo(JobInfo jobInfo) {
         int rs = 1;
@@ -84,12 +104,28 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public void produceJobInfo(JobInfo infoDTO) {
-        infoDTO.setContentMD5(DigestUtils.md5Hex(infoDTO.getTitle()));//进行MD5
-        if (isDBEnabled()) bufferAdd(infoDTO);
-        else {
-            jobInfos.add(infoDTO);
-            avaliableComanys.add(infoDTO.getCompany());
+        try {
+            jobInfoBlockingQueue.put(infoDTO);
+            totalInfoProduced++;
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage(), e);
         }
+    }
+
+    @Override public void consumeJobInfo() {
+        try {
+            JobInfo infoDTO = jobInfoBlockingQueue.take();
+            totalInfoConsumed++;
+            infoDTO.setContentMD5(DigestUtils.md5Hex(infoDTO.getTitle()));//进行MD5
+            if (isDBEnabled()) bufferAdd(infoDTO);
+            else {
+                jobInfos.add(infoDTO);
+                avaliableComanys.add(infoDTO.getCompany());
+            }
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage(), e);
+        }
+
     }
 
     public Set<String> getAvalibaleComanys() {
@@ -105,7 +141,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
         List<JobInfo> cachedInfoList = new ArrayList<>();
         int cacheSize = 0;
         Date maxCacheDate = null;
-        ProfileUtils.start("getFromCache");
         if (useCache) {
             cachedInfoList = jobInfoCacheService.getFromCache();
             if (!CollectionUtils.isEmpty(cachedInfoList)) {
@@ -113,12 +148,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
                 cacheSize = cachedInfoList.size();
             }
         }
-        ProfileUtils.end("getFromCache");
         List<JobInfo> mysqlInfo;
-        ProfileUtils.start("getJobInfosMysql");
         if (maxCacheDate == null) mysqlInfo = jobInfoMapper.getJobInfos();
         else mysqlInfo = jobInfoMapper.getJobInfosSince(maxCacheDate);
-        ProfileUtils.end("getJobInfosMysql");
         List<JobInfo> list = new ArrayList<>(cacheSize + mysqlInfo.size());
         list.addAll(cachedInfoList);
         list.addAll(mysqlInfo);
@@ -127,7 +159,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     @PostConstruct public void createTableIfNotExits() {
-        if(!AppConfigUtils.isMysqlEnabled()) return;
+        if (!AppConfigUtils.isMysqlEnabled()) return;
         if (AppConfigUtils.isMysqlDropTable()) dropTableIfExits();
         try {
             jobInfoMapper.createTableIfNotExits();
@@ -145,7 +177,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
     }
 
     public Date getLatestDateBySource(String source) {
-        if(source==null) return null;
+        if (source == null) return null;
         if (!AppConfigUtils.isMysqlEnabled()) return null;
         return jobInfoMapper.getLatestDateBySource(source);
     }
@@ -156,6 +188,21 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
     @Override public void dropTableIfExits() {
         jobInfoMapper.dropTableIfExists();
+    }
+
+    @Override public QueueProgress getQueueProgress() {
+        return new QueueProgress(jobInfoBlockingQueue.size(), totalInfoProduced, totalInfoConsumed);
+    }
+
+    @Override public void waitConsumedEnd() {
+        while (!consumedEnd && !jobInfoBlockingQueue.isEmpty()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+        consumedEnd = true;
     }
 
     public boolean isDBEnabled() {

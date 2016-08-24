@@ -16,11 +16,29 @@ import java.util.Properties;
 
     private static Logger logger = Logger.getLogger(AppConfigUtils.class);
 
+    /**
+     * 是否调试环境
+     */
     @Getter private static boolean debug          = true;
+    /**
+     * 是否开启mysql
+     */
     @Getter private static boolean mysqlEnabled   = true;
+    /**
+     * 是否删除表
+     */
     @Getter private static boolean mysqlDropTable = true;
+    /**
+     * 是否开启redis
+     */
     @Getter private static boolean redisEnabled   = true;
+    /**
+     * 是否重置redis
+     */
     @Getter private static boolean redisFlush     = true;
+    /**
+     *
+     */
     @Getter private static int     crawMaxNum     = 50;
     @Getter private static int     threadNum      = 5;
     @Getter private static boolean expCrawler     = false;
@@ -42,5 +60,15 @@ import java.util.Properties;
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
+    }
+
+    private static int consumeThreadNum = 5;
+
+    public static int getConsumeThreadNum() {
+        return consumeThreadNum;
+    }
+
+    public static void setConsumeThreadNum(int consumeThreadNum) {
+        AppConfigUtils.consumeThreadNum = consumeThreadNum;
     }
 }

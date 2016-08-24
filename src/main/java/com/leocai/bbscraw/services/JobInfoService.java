@@ -1,6 +1,7 @@
 package com.leocai.bbscraw.services;
 
 import com.leocai.bbscraw.beans.JobInfo;
+import com.leocai.bbscraw.services.impl.QueueProgress;
 
 import java.util.Date;
 import java.util.List;
@@ -96,4 +97,32 @@ public interface JobInfoService {
     List<JobInfo> getJobInfosSince(Date date);
 
     void dropTableIfExits();
+
+    /**
+     * 消费就业信息
+     */
+    void consumeJobInfo();
+
+    /**
+     * 获取消费队列的进度
+     * @return
+     */
+    QueueProgress getQueueProgress();
+
+    /**
+     * 判断消息是否结束
+     * @return
+     */
+    boolean isProducedEnd();
+
+    /**
+     * 判读消费是否结束
+     * @return
+     */
+    boolean isConsumedEnd();
+
+    /**
+     * 等待消费队列为空，并设置consumedEnd
+     */
+    void waitConsumedEnd();
 }

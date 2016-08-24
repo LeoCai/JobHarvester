@@ -5,7 +5,6 @@ import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
 import com.leocai.bbscraw.utils.HtmlUtils;
 import com.leocai.bbscraw.utils.MySpringUtils;
-import com.leocai.bbscraw.utils.ProfileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,10 +27,7 @@ import java.util.List;
     }
 
     public void start() {
-        ProfileUtils.start("getJobInfos");
         List<JobInfo> jobInfoList = jobInfoService.getJobInfos(AppConfigUtils.isRedisEnabled());
-        ProfileUtils.end("getJobInfos");
-        ProfileUtils.print();
 
         //        for (JobInfo jobInfo : jobInfoList) {
 //            System.out.println(jobInfo.getJobDate().getTime());

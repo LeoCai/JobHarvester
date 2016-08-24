@@ -2,23 +2,16 @@ package com.leocai.bbscraw.services.impl;
 
 import com.leocai.bbscraw.beans.JobInfo;
 import com.leocai.bbscraw.crawlers.MyCrawler;
-import com.leocai.bbscraw.filters.AttentionFilters;
-import com.leocai.bbscraw.filters.FaceExperienceFilters;
-import com.leocai.bbscraw.filters.JobInfoFilters;
 import com.leocai.bbscraw.services.CrawlerService;
 import com.leocai.bbscraw.services.JobInfoService;
 import com.leocai.bbscraw.utils.AppConfigUtils;
-import com.leocai.bbscraw.utils.AttentionUtils;
 import com.leocai.bbscraw.utils.HtmlUtils;
-import com.leocai.bbscraw.utils.ProfileUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -37,10 +30,14 @@ import java.util.concurrent.*;
     @Resource(name = "jobCrawlerMap") private Map<String, MyCrawler> jobCrawlerMap;
 
     @Resource(name = "expCrawlerMap") private Map<String, MyCrawler> expCrawlerMap;
+    /**
+     * 当前使用的爬虫种类
+     */
     private                                   Map<String, MyCrawler> cuCrawlerMap;
 
     @Autowired private JobInfoService  jobInfoService;
-    private            ExecutorService executorService;
+    private            ExecutorService jobInfoProduceService;
+    private            ExecutorService jobInfoConsumeService;
 
     /**
      * 使用类加载器加载各个爬虫类
@@ -48,67 +45,56 @@ import java.util.concurrent.*;
      * 读取学校链接匹配地址，命名规范[School]+[Crawer]
      */
     @PostConstruct public void init() {
-        ProfileUtils.start("init");
-        executorService = Executors.newFixedThreadPool(AppConfigUtils.getThreadNum());
-        ProfileUtils.end("init");
+        jobInfoProduceService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
+        jobInfoConsumeService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
+        if (!AppConfigUtils.isExpCrawler()) cuCrawlerMap = jobCrawlerMap;
+        else cuCrawlerMap = expCrawlerMap;
+
     }
 
     /**
      * 从上次时间继续爬虫
      */
     public void continueCraw() {
-        if (!AppConfigUtils.isExpCrawler()) cuCrawlerMap = jobCrawlerMap;
-        else cuCrawlerMap = expCrawlerMap;
-        Set<String> keys = cuCrawlerMap.keySet();
-        List<Future<String>> fts = new ArrayList<>(keys.size());
-        for (final String key : keys) {
-            Future<String> ft = executorService.submit(new Callable<String>() {
-
-                public String call() throws Exception {
-                    MyCrawler crawler = cuCrawlerMap.get(key);
-                    Date date = jobInfoService.getLatestDateBySource(crawler.getSource());
-
-                    crawler.init();
-                    for (int i = 0; i < crawler.getPageNum(); i++) {
-                        ProfileUtils.start(getClass().getSimpleName() + ".crawOnePage");
-                        List<WebElement> wes = crawler.getCuCaoTarget();
-                        for (WebElement we : wes) {
-                            String text = we.getText();
-                            if (!crawler.getAttentionFilters().isAttention(text)
-                                || crawler.getAttentionFilters().isIgnored(text)) continue;
-                            JobInfo infoDTO = crawler.getInfoDTO(we);
-                            infoDTO.setCompany(AttentionUtils.findComany(infoDTO.getTitle()));
-                            if (date != null && crawler.dateEarly(infoDTO, date)) {
-                                logger.info("find date");
-                                return null;
-                            }
-                            infoDTO.setSource(crawler.getSource());
-                            if (crawler.getAttentionFilters().filted(infoDTO)) continue;
-                            jobInfoService.produceJobInfo(infoDTO);
-                        }
-                        ProfileUtils.end(getClass().getSimpleName() + ".crawOnePage");
-                        ProfileUtils.start(getClass().getSimpleName() + ".nextPage");
-                        crawler.nextPage();
-                        ProfileUtils.end(getClass().getSimpleName() + ".nextPage");
-                    }
-
-                    jobCrawlerMap.get(key).close();
-                    return null;
-                }
-            });
-            fts.add(ft);
-        }
-        for (Future<String> f : fts) {
+        List<Future<String>> fts = asyncProduceJobInfo();
+        asyncConsumeJobInfo();
+        asyncMoniterInfoQueue();
+        for(Future<String> ft:fts){
             try {
-                f.get();
+                ft.get();
             } catch (InterruptedException | ExecutionException e) {
                 logger.error(e.getMessage(), e);
             }
         }
-        if (!isDBEnabled()) {
-            List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
-            HtmlUtils.writeHtml(jobInfoList, jobInfoService);
+        jobInfoService.waitConsumedEnd();
+        //        writeHtml();
+    }
+
+    /**
+     * 异步产生就业信息
+     */
+    private List<Future<String>> asyncProduceJobInfo() {
+        Set<String> keys = cuCrawlerMap.keySet();
+        List<Future<String>> fts = new ArrayList<>(keys.size());
+        for (String key : keys) {
+            Future<String> ft = jobInfoProduceService.submit(
+                    new CrawlerCallableJob(cuCrawlerMap.get(key), jobInfoService));
+            fts.add(ft);
         }
+        return fts;
+    }
+
+    /**
+     * 异步消费信息
+     */
+    private void asyncConsumeJobInfo() {
+        for (int i = 0; i < AppConfigUtils.getConsumeThreadNum(); i++) {
+            jobInfoConsumeService.execute(new ConsumeJob(jobInfoService));
+        }
+    }
+
+    private void asyncMoniterInfoQueue() {
+        new Thread(new MonitorJob(jobInfoService)).start();
     }
 
     /**
@@ -121,7 +107,7 @@ import java.util.concurrent.*;
         Set<String> set = jobCrawlerMap.keySet();
         List<Future<String>> fts = new ArrayList<>(set.size());
         for (final String key : set) {
-            Future<String> ft = executorService.submit(new Callable<String>() {
+            Future<String> ft = jobInfoProduceService.submit(new Callable<String>() {
 
                 public String call() throws Exception {
                     String rs = jobCrawlerMap.get(key).start();
@@ -144,8 +130,11 @@ import java.util.concurrent.*;
         }
     }
 
-    public void crawlerToday() {
-
+    private void writeHtml() {
+        if (!isDBEnabled()) {
+            List<JobInfo> jobInfoList = jobInfoService.getJobInfosFromMemory();
+            HtmlUtils.writeHtml(jobInfoList, jobInfoService);
+        }
     }
 
     public void crawByPage() {
@@ -153,10 +142,6 @@ import java.util.concurrent.*;
     }
 
     public void close() {
-
-    }
-
-    public void crawByDate() {
 
     }
 
