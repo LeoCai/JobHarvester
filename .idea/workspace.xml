@@ -7,20 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc4197f4-a482-4b27-b825-6c619e175652" name="Default" comment="重构入口">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/ConsumeJob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerCallableJob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/MonitorJob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/QueueProgress.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/config/app.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobInfo.html" afterPath="$PROJECT_DIR$/jobInfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/properties/app.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/properties/app.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/config/properties/app.properties" afterPath="$PROJECT_DIR$/target/classes/config/properties/app.properties" />
     </list>
@@ -88,25 +76,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobInfoService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java">
+      <file leaf-file-name="JobInfoCacheServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+            <state relative-caret-position="276">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppConfigUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/AppConfigUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-              <folding>
-                <element signature="e#2178#2179#0" expanded="true" />
-                <element signature="e#2217#2218#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -114,19 +89,259 @@
       <file leaf-file-name="CrawlerServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            <state relative-caret-position="25">
+              <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#init#0;class#CrawlerServiceImpl#0" expanded="false" />
+                <element signature="method#continueCraw#0;class#CrawlerServiceImpl#0" expanded="false" />
+                <element signature="docComment;method#asyncConsumeJobInfo#0;class#CrawlerServiceImpl#0" expanded="false" />
                 <element signature="e#2998#2999#0" expanded="true" />
                 <element signature="e#3064#3065#0" expanded="true" />
+                <element signature="docComment;method#asynStart#0;class#CrawlerServiceImpl#0" expanded="false" />
                 <element signature="method#asynStart#0;class#CrawlerServiceImpl#0" expanded="false" />
                 <element signature="e#3426#3686#0" expanded="true" />
                 <element signature="e#3685#3686#0" expanded="true" />
-                <element signature="method#close#0;class#CrawlerServiceImpl#0" expanded="false" />
+                <element signature="method#writeHtml#0;class#CrawlerServiceImpl#0" expanded="false" />
+                <element signature="e#4373#4374#0" expanded="true" />
+                <element signature="e#4400#4401#0" expanded="true" />
                 <element signature="method#start#0;class#CrawlerServiceImpl#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JAVA/com.leocai.bbscraw" pinned="false" current-in-tab="false">
+        <entry file="uml://JAVA/com.leocai.bbscraw">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement>com.leocai.bbscraw</OriginalElement>
+              <nodes>
+                <node x="1749.4583333333333" y="90.0">com.leocai.bbscraw.CrawlerReader</node>
+                <node x="1163.7863455988454" y="90.0">com.leocai.bbscraw.services.impl.QueueProgress</node>
+                <node x="1165.2999639249638" y="200.0">com.leocai.bbscraw.services.impl.JobInfoServiceImpl</node>
+                <node x="814.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NOWCODERCrawler</node>
+                <node x="153.62797619047592" y="200.0">com.leocai.bbscraw.services.CrawlerService</node>
+                <node x="1621.4583333333333" y="90.0">com.leocai.bbscraw.services.impl.ConsumeJob</node>
+                <node x="2.75" y="90.0">com.leocai.bbscraw.advice.TimeAdvice.MyProfile</node>
+                <node x="337.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.SJUCrawler</node>
+                <node x="42.47384559884529" y="300.0">com.leocai.bbscraw.CrawlerWriter</node>
+                <node x="639.8624639249639" y="90.0">com.leocai.bbscraw.crawlers.MyCrawler</node>
+                <node x="697.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.ZJUCrawler</node>
+                <node x="1234.4113455988454" y="300.0">com.leocai.bbscraw.services.impl.CrawlerServiceImpl</node>
+                <node x="0.0" y="200.0">com.leocai.bbscraw.advice.TimeAdvice</node>
+                <node x="1358.2083333333333" y="200.0">com.leocai.bbscraw.services.impl.JobInfoCacheServiceImpl</node>
+                <node x="239.75" y="90.0">com.leocai.bbscraw.filters.FaceExperienceFilters</node>
+                <node x="422.2238455988453" y="90.0">com.leocai.bbscraw.beans.JobInfoIndex</node>
+                <node x="999.7238455988453" y="90.0">com.leocai.bbscraw.beans.JobInfo</node>
+                <node x="109.75" y="90.0">com.leocai.bbscraw.filters.JobInfoFilters</node>
+                <node x="1493.4874639249638" y="0.0">com.leocai.bbscraw.services.JobInfoService</node>
+                <node x="1309.1613455988454" y="90.0">com.leocai.bbscraw.services.JobInfoCacheService</node>
+                <node x="454.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NYUCrawler</node>
+                <node x="522.1279761904759" y="300.0">com.leocai.bbscraw.crawlers.NJUCSCrawler</node>
+                <node x="257.9041305916305" y="0.0">com.leocai.bbscraw.filters.AttentionFilters</node>
+                <node x="576.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NJUCrawler</node>
+                <node x="1002.2999639249639" y="200.0">com.leocai.bbscraw.services.impl.CrawlerCallableJob</node>
+                <node x="1501.4583333333333" y="90.0">com.leocai.bbscraw.services.impl.MonitorJob</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="com.leocai.bbscraw.crawlers.NOWCODERCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="-37.5" y="-15.0" />
+                  <point x="851.8624639249639" y="170.0" />
+                  <point x="713.7196067821067" y="170.0" />
+                  <point x="26.857142857142776" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.MonitorJob">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NJUCSCrawler" target="com.leocai.bbscraw.crawlers.NJUCrawler">
+                  <point x="0.0" y="-15.0" />
+                  <point x="579.6279761904759" y="280.0" />
+                  <point x="626.3624639249639" y="280.0" />
+                  <point x="0.0" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.CrawlerWriter" target="com.leocai.bbscraw.advice.TimeAdvice">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.CrawlerService">
+                  <point x="-59.58333333333326" y="-15.0" />
+                  <point x="1246.328012265512" y="270.0" />
+                  <point x="241.37797619047592" y="270.0" />
+                  <point x="29.25" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.filters.JobInfoFilters" target="com.leocai.bbscraw.filters.AttentionFilters">
+                  <point x="0.0" y="-15.0" />
+                  <point x="164.75" y="70.0" />
+                  <point x="277.57079725829726" y="70.0" />
+                  <point x="-39.333333333333314" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.CrawlerWriter" target="com.leocai.bbscraw.services.CrawlerService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerCallableJob" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerCallableJob" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.ConsumeJob" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.CrawlerReader" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.ConsumeJob">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.MonitorJob" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.filters.FaceExperienceFilters" target="com.leocai.bbscraw.filters.AttentionFilters">
+                  <point x="0.0" y="-15.0" />
+                  <point x="0.0" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.impl.QueueProgress">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NYUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="25.5" y="-15.0" />
+                  <point x="530.8624639249639" y="170.0" />
+                  <point x="660.005321067821" y="170.0" />
+                  <point x="-26.85714285714289" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NYUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.MyCrawler" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NJUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.MyCrawler" target="com.leocai.bbscraw.filters.AttentionFilters">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.JobInfoCacheService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.advice.TimeAdvice" target="com.leocai.bbscraw.advice.TimeAdvice.MyProfile">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.beans.JobInfo">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.SJUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.JobInfoCacheServiceImpl" target="com.leocai.bbscraw.services.JobInfoCacheService">
+                  <point x="0.0" y="-15.0" />
+                  <point x="1447.2083333333333" y="170.0" />
+                  <point x="1423.1613455988454" y="170.0" />
+                  <point x="38.0" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.ZJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="0.0" y="-15.0" />
+                  <point x="745.8624639249639" y="180.0" />
+                  <point x="700.2910353535353" y="180.0" />
+                  <point x="13.428571428571445" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NOWCODERCrawler" target="com.leocai.bbscraw.beans.JobInfo">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.CrawlerCallableJob">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.SJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="24.25" y="-15.0" />
+                  <point x="410.1124639249639" y="160.0" />
+                  <point x="646.5767496392496" y="160.0" />
+                  <point x="-40.285714285714334" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.JobInfoService">
+                  <point x="53.625" y="-15.0" />
+                  <point x="1290.4249639249638" y="180.0" />
+                  <point x="1471.6613455988454" y="180.0" />
+                  <point x="1471.6613455988454" y="70.0" />
+                  <point x="1535.273178210678" y="70.0" />
+                  <point x="-16.71428571428578" y="15.0" />
+                </edge>
+                <edge source="com.leocai.bbscraw.crawlers.NJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+                  <point x="25.0" y="-15.0" />
+                  <point x="651.3624639249639" y="180.0" />
+                  <point x="673.4338924963924" y="180.0" />
+                  <point x="-13.428571428571445" y="15.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.8241525423728814" x="281.20822622107966" y="38.8097686375321" />
+              <SelectedNodes />
+              <Categories />
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrawlerWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Autowired.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.2.RELEASE/spring-beans-4.0.2.RELEASE-sources.jar!/org/springframework/beans/factory/annotation/Autowired.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#3176#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-crawler-config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/spring/spring-crawler-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,7 +349,7 @@
       <file leaf-file-name="ConsumeJob.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/ConsumeJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="153">
               <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding>
                 <element signature="e#294#295#0" expanded="true" />
@@ -154,47 +369,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConcurrentHashMap.java" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/ConcurrentHashMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="1119" column="34" selection-start-line="1119" selection-start-column="34" selection-end-line="1119" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MonitorJob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/MonitorJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/config/properties/app.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="138">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySpringUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/MySpringUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-              <folding>
-                <element signature="e#369#370#0" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -264,7 +444,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/filters/FaceExperienceFilters.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/CrawlerService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/spring/spring-crawler-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/properties/app.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/ProfileUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/MyCrawler.java" />
@@ -278,6 +457,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/JobInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/properties/app.properties" />
       </list>
     </option>
   </component>
@@ -627,11 +807,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -645,15 +821,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="selenium-2.53.1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -667,19 +839,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="selenium-2.53.1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -693,24 +861,98 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="selenium-2.53.1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="commons-io-2.4.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="properties" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selenium-2.53.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commons-exec-1.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selenium-2.53.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cglib-nodep-2.1_3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbsClaw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selenium-2.53.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bsh-2.0b4.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1356,7 +1598,7 @@
       <workItem from="1470204527292" duration="83037000" />
       <workItem from="1470651343712" duration="7012000" />
       <workItem from="1470829032731" duration="1964000" />
-      <workItem from="1471933224663" duration="8476000" />
+      <workItem from="1471933224663" duration="12277000" />
     </task>
     <task id="LOCAL-00001" summary="添加注释，&#10;droptable&#10;MD5属性">
       <created>1470037334372</created>
@@ -1401,7 +1643,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214608000" />
+    <option name="totallyTimeSpent" value="218409000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1416,7 +1658,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34005377" sideWeight="0.4344473" order="11" side_tool="true" content_ui="tabs" />
@@ -1436,10 +1678,10 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="92" y="92" width="1416" height="676" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.049731184" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.547043" sideWeight="0.5655527" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3454301" sideWeight="0.5655527" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.109897174" sideWeight="0.49441788" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.281491" sideWeight="0.49441788" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.4974293" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24614395" sideWeight="0.50558215" order="4" side_tool="true" content_ui="tabs" />
@@ -1557,20 +1799,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NOWCODERCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/NJUCSCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/crawlers/ZJUCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1768,44 +1996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="uml://JAVA/com.leocai.bbscraw">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>com.leocai.bbscraw</OriginalElement>
-          <nodes>
-            <node x="" y="">com.leocai.bbscraw.utils.AppConfigUtilsTest</node>
-            <node x="" y="">com.leocai.bbscraw.crawlers</node>
-            <node x="" y="">com.leocai.bbscraw.utils.JobDateParser</node>
-            <node x="" y="">com.leocai.bbscraw.enums</node>
-            <node x="" y="">com.leocai.bbscraw.CrawlerReader</node>
-            <node x="" y="">com.leocai.bbscraw.utils.JobInfoExtractUtils</node>
-            <node x="" y="">com.leocai.bbscraw.beans</node>
-            <node x="" y="">com.leocai.bbscraw.utils.HtmlUtils</node>
-            <node x="" y="">com.leocai.bbscraw.mappers</node>
-            <node x="" y="">com.leocai.bbscraw.utils.MapUtil</node>
-            <node x="" y="">com.leocai.bbscraw.utils.JobDateUtils</node>
-            <node x="" y="">com.leocai.bbscraw.CrawlerWriter</node>
-            <node x="" y="">com.leocai.bbscraw.utils.ProfileUtils</node>
-            <node x="" y="">com.leocai.bbscraw.utils.JobInfoUtils</node>
-            <node x="" y="">com.leocai.bbscraw.utils.MySpringUtils</node>
-            <node x="" y="">com.leocai.bbscraw.comparators</node>
-            <node x="" y="">com.leocai.bbscraw.services</node>
-            <node x="" y="">com.leocai.bbscraw.filters</node>
-            <node x="" y="">com.leocai.bbscraw.utils.AttentionUtils</node>
-            <node x="" y="">com.leocai.bbscraw.utils.AppConfigUtils</node>
-            <node x="" y="">com.leocai.bbscraw.advice</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="171.0" y="258.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/mappers/JobInfoMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
@@ -1838,26 +2028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/spring/spring-crawler-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2361#2362#0" expanded="false" />
-            <element signature="e#2393#2394#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerCallableJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -1865,14 +2035,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1982,29 +2144,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/properties/app.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/utils/MySpringUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding>
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="false" />
+            <element signature="e#445#446#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2014,19 +2160,8 @@
         <state relative-caret-position="485">
           <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
           <folding>
-            <element signature="e#2178#2179#0" expanded="true" />
-            <element signature="e#2217#2218#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/ConsumeJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="e#294#295#0" expanded="true" />
-            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#2178#2179#0" expanded="false" />
+            <element signature="e#2217#2218#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2036,7 +2171,7 @@
         <state relative-caret-position="368">
           <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2076,19 +2211,294 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/spring/spring-crawler-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/properties/app.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/ConsumeJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding>
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#346#347#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.2.RELEASE/spring-beans-4.0.2.RELEASE.jar!/org/springframework/beans/factory/annotation/Autowired.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.2.RELEASE/spring-beans-4.0.2.RELEASE-sources.jar!/org/springframework/beans/factory/annotation/Autowired.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#3176#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/JobInfoCacheServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/CrawlerWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.leocai.bbscraw">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.leocai.bbscraw</OriginalElement>
+          <nodes>
+            <node x="1749.4583333333333" y="90.0">com.leocai.bbscraw.CrawlerReader</node>
+            <node x="1163.7863455988454" y="90.0">com.leocai.bbscraw.services.impl.QueueProgress</node>
+            <node x="1165.2999639249638" y="200.0">com.leocai.bbscraw.services.impl.JobInfoServiceImpl</node>
+            <node x="814.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NOWCODERCrawler</node>
+            <node x="153.62797619047592" y="200.0">com.leocai.bbscraw.services.CrawlerService</node>
+            <node x="1621.4583333333333" y="90.0">com.leocai.bbscraw.services.impl.ConsumeJob</node>
+            <node x="2.75" y="90.0">com.leocai.bbscraw.advice.TimeAdvice.MyProfile</node>
+            <node x="337.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.SJUCrawler</node>
+            <node x="42.47384559884529" y="300.0">com.leocai.bbscraw.CrawlerWriter</node>
+            <node x="639.8624639249639" y="90.0">com.leocai.bbscraw.crawlers.MyCrawler</node>
+            <node x="697.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.ZJUCrawler</node>
+            <node x="1234.4113455988454" y="300.0">com.leocai.bbscraw.services.impl.CrawlerServiceImpl</node>
+            <node x="0.0" y="200.0">com.leocai.bbscraw.advice.TimeAdvice</node>
+            <node x="1358.2083333333333" y="200.0">com.leocai.bbscraw.services.impl.JobInfoCacheServiceImpl</node>
+            <node x="239.75" y="90.0">com.leocai.bbscraw.filters.FaceExperienceFilters</node>
+            <node x="422.2238455988453" y="90.0">com.leocai.bbscraw.beans.JobInfoIndex</node>
+            <node x="999.7238455988453" y="90.0">com.leocai.bbscraw.beans.JobInfo</node>
+            <node x="109.75" y="90.0">com.leocai.bbscraw.filters.JobInfoFilters</node>
+            <node x="1493.4874639249638" y="0.0">com.leocai.bbscraw.services.JobInfoService</node>
+            <node x="1309.1613455988454" y="90.0">com.leocai.bbscraw.services.JobInfoCacheService</node>
+            <node x="454.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NYUCrawler</node>
+            <node x="522.1279761904759" y="300.0">com.leocai.bbscraw.crawlers.NJUCSCrawler</node>
+            <node x="257.9041305916305" y="0.0">com.leocai.bbscraw.filters.AttentionFilters</node>
+            <node x="576.3624639249639" y="200.0">com.leocai.bbscraw.crawlers.NJUCrawler</node>
+            <node x="1002.2999639249639" y="200.0">com.leocai.bbscraw.services.impl.CrawlerCallableJob</node>
+            <node x="1501.4583333333333" y="90.0">com.leocai.bbscraw.services.impl.MonitorJob</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.leocai.bbscraw.crawlers.NOWCODERCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="-37.5" y="-15.0" />
+              <point x="851.8624639249639" y="170.0" />
+              <point x="713.7196067821067" y="170.0" />
+              <point x="26.857142857142776" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.MonitorJob">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NJUCSCrawler" target="com.leocai.bbscraw.crawlers.NJUCrawler">
+              <point x="0.0" y="-15.0" />
+              <point x="579.6279761904759" y="280.0" />
+              <point x="626.3624639249639" y="280.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.CrawlerWriter" target="com.leocai.bbscraw.advice.TimeAdvice">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.CrawlerService">
+              <point x="-59.58333333333326" y="-15.0" />
+              <point x="1246.328012265512" y="270.0" />
+              <point x="241.37797619047592" y="270.0" />
+              <point x="29.25" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.filters.JobInfoFilters" target="com.leocai.bbscraw.filters.AttentionFilters">
+              <point x="0.0" y="-15.0" />
+              <point x="164.75" y="70.0" />
+              <point x="277.57079725829726" y="70.0" />
+              <point x="-39.333333333333314" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.CrawlerWriter" target="com.leocai.bbscraw.services.CrawlerService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerCallableJob" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerCallableJob" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.ConsumeJob" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.CrawlerReader" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.ConsumeJob">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.MonitorJob" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.filters.FaceExperienceFilters" target="com.leocai.bbscraw.filters.AttentionFilters">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.impl.QueueProgress">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NYUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="25.5" y="-15.0" />
+              <point x="530.8624639249639" y="170.0" />
+              <point x="660.005321067821" y="170.0" />
+              <point x="-26.85714285714289" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NYUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.MyCrawler" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NJUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.MyCrawler" target="com.leocai.bbscraw.filters.AttentionFilters">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.JobInfoCacheService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.advice.TimeAdvice" target="com.leocai.bbscraw.advice.TimeAdvice.MyProfile">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.beans.JobInfo">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.SJUCrawler" target="com.leocai.bbscraw.beans.JobInfoIndex">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.JobInfoCacheServiceImpl" target="com.leocai.bbscraw.services.JobInfoCacheService">
+              <point x="0.0" y="-15.0" />
+              <point x="1447.2083333333333" y="170.0" />
+              <point x="1423.1613455988454" y="170.0" />
+              <point x="38.0" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.ZJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="0.0" y="-15.0" />
+              <point x="745.8624639249639" y="180.0" />
+              <point x="700.2910353535353" y="180.0" />
+              <point x="13.428571428571445" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NOWCODERCrawler" target="com.leocai.bbscraw.beans.JobInfo">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.CrawlerServiceImpl" target="com.leocai.bbscraw.services.impl.CrawlerCallableJob">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.SJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="24.25" y="-15.0" />
+              <point x="410.1124639249639" y="160.0" />
+              <point x="646.5767496392496" y="160.0" />
+              <point x="-40.285714285714334" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.services.impl.JobInfoServiceImpl" target="com.leocai.bbscraw.services.JobInfoService">
+              <point x="53.625" y="-15.0" />
+              <point x="1290.4249639249638" y="180.0" />
+              <point x="1471.6613455988454" y="180.0" />
+              <point x="1471.6613455988454" y="70.0" />
+              <point x="1535.273178210678" y="70.0" />
+              <point x="-16.71428571428578" y="15.0" />
+            </edge>
+            <edge source="com.leocai.bbscraw.crawlers.NJUCrawler" target="com.leocai.bbscraw.crawlers.MyCrawler">
+              <point x="25.0" y="-15.0" />
+              <point x="651.3624639249639" y="180.0" />
+              <point x="673.4338924963924" y="180.0" />
+              <point x="-13.428571428571445" y="15.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.8241525423728814" x="281.20822622107966" y="38.8097686375321" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leocai/bbscraw/services/impl/CrawlerServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        <state relative-caret-position="25">
+          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#init#0;class#CrawlerServiceImpl#0" expanded="false" />
+            <element signature="method#continueCraw#0;class#CrawlerServiceImpl#0" expanded="false" />
+            <element signature="docComment;method#asyncConsumeJobInfo#0;class#CrawlerServiceImpl#0" expanded="false" />
             <element signature="e#2998#2999#0" expanded="true" />
             <element signature="e#3064#3065#0" expanded="true" />
+            <element signature="docComment;method#asynStart#0;class#CrawlerServiceImpl#0" expanded="false" />
             <element signature="method#asynStart#0;class#CrawlerServiceImpl#0" expanded="false" />
             <element signature="e#3426#3686#0" expanded="true" />
             <element signature="e#3685#3686#0" expanded="true" />
-            <element signature="method#close#0;class#CrawlerServiceImpl#0" expanded="false" />
+            <element signature="method#writeHtml#0;class#CrawlerServiceImpl#0" expanded="false" />
+            <element signature="e#4373#4374#0" expanded="true" />
+            <element signature="e#4400#4401#0" expanded="true" />
             <element signature="method#start#0;class#CrawlerServiceImpl#0" expanded="false" />
           </folding>
         </state>
